@@ -2,9 +2,7 @@ package Logic;
 
 public class Student {
     private String name;
-    private double grade1;
-    private double grade2;
-    private double grade3;
+    private double grade1,grade2,grade3;
     private double average;
 
     public Student(String name, double grade1, double grade2, double grade3) {
