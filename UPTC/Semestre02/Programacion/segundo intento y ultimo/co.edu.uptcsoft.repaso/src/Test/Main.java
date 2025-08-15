@@ -3,24 +3,25 @@ package Test;
 import java.util.Scanner;
 
 public class Main {
+    static int value = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Main obj = new Main();
         System.out.println("Digite el valor");
-        int value = sc.nextInt();
-        System.out.println(oddPair(value));
-        multiplicationTable(value);
+        value = sc.nextInt();
+        System.out.println(obj.oddPair());
+        obj.multiplicationTable();
     }
-    public static void multiplicationTable (int value){
+    public void multiplicationTable (){
         for (int i = 1; i <= 10  ; i++) {
             System.out.println(value + " * " + i + " = " + (value*i));
         }
     }
-    public static String oddPair(int value){
+    public String oddPair(){
         if ((value % 2) == 0){
             return "El numero " + value + ", es par.";
         } else {
             return "El numero " + value + ", es impar.";
         }
-
     }
 }
