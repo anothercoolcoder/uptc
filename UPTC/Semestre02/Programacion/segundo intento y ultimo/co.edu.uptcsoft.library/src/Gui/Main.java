@@ -1,31 +1,31 @@
 package Gui;
 
-import Model.Book;
-import Model.Library;
-
+import java.util.Scanner;
+import Control.Control;
 public class Main {
+
     public static void main(String[] args) {
-        Library library = new Library(3);
+        System.out.println("¿Cuantos libros tendra la biblioteca?");
+        Scanner scanner = new Scanner(System.in);
+        Control control = new Control();
 
-        Book book1 = new Book();
-        book1.author = "Gabriel Garcia Marquez";
-        book1.year = 1967;
-        book1.title = "Cien años de soledad";
+        String value = scanner.nextLine();
+        System.out.println("El tamaño de libreria es de " + control.interfaceLibrary(value)+ " libros.");
 
-        Book book2 = new Book();
-        book2.title = "Kafka on Shore";
-        book2.year = 2005;
-        book2.author = "Haruki Murakami";
+        for (int i = 0; i < Integer.parseInt(value) ; i++) {
+            System.out.println("Escribe el nombre del libro");
+            String name = scanner.nextLine();
+            System.out.println("Escribe el nombre del autor");
+            String author = scanner.nextLine();
+            System.out.println("Escribe el año de publicacion");
+            String year = scanner.nextLine();
+            control.interfaceBook(name, author, year);
+        }
+        String[] books = control.showBook();
 
-        Book book3 = new Book();
-        book3.title = "Los hermanos Karamazov";
-        book3.year = 1880;
-        book3.author = "Fiodor Dostoevsky";
+        for (String book : books){
+            System.out.println(book);
+        }
 
-        // ¿tendria que implementar un control que realice un intermediario?
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addBook(book3);
-        library.showBooks();
     }
 }
