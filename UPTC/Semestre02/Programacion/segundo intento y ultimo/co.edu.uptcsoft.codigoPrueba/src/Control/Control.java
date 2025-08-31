@@ -6,6 +6,11 @@ public class Control {
     Videogame videogame = new Videogame();
 
     public String interfaceVideoGame(String name, String genre, String price){
+        // parse.int precio
+        // logic.crearVideojuego(
+        // control validaciones
+        // logica no van validaciones
+        // separado por comas .trim
         videogame.setName(name);
         videogame.setGenre(genre);
         videogame.setPrice(Double.parseDouble(price));
@@ -23,6 +28,7 @@ public class Control {
         if (videogame.getName() == null){
             return "Primero tienes que crear el videojuego";
         } else {
+
             videogame.setName(name);
             videogame.setGenre(genre);
             videogame.setPrice(Double.parseDouble(price));
