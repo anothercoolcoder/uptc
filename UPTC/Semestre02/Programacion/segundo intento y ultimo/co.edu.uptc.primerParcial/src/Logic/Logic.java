@@ -9,8 +9,9 @@ public class Logic {
         user.setState(getFirstValidStage());
         return user.toString();
     }
+
     public String firstStage(){
-        if (user.getAge()>=80||user.getWork().equals("Primera linea")){
+        if (user.getAge()>=80 || user.getWork().equals("Primera linea")){
             return "Fase 1, primera etapa";
         }else {
             return "No aplica para fase 1, primera etapa";
@@ -19,7 +20,7 @@ public class Logic {
     public String secondStage(){
         if (user.getAge()<=79||user.getAge()>=60){
             return "Fase 1, segunda etapa";
-        } else if (user.getWork().equals("Segunda linea")||user.getWork().equals("Tercera linea")) {
+        } else if (user.getWork().equals("Segunda linea") || user.getWork().equals("Tercera linea")) {
             return "Fase 1, segunda etapa";
         } else{
             return "No aplica para fase 1, segunda etapa";
@@ -61,5 +62,4 @@ public class Logic {
             return "No aplica a ninguna fase";
         }
     }
-
 }

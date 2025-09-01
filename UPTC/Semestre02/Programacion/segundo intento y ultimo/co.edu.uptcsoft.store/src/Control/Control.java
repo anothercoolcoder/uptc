@@ -1,32 +1,24 @@
 package Control;
 
-import Logic.Sorting;
-import Model.Product;
-import Model.Store;
+import Logic.Logic;
 
 public class Control {
-    Store store = new Store(3);
+    Logic logic = new Logic();
 
     public String interfaceProduct(String name, String price){
-        Product product = new Product(name, Integer.parseInt(price));
-        store.addProduct(product.toString());
-        return "El nombre del producto agregado es " + product.getName();
+        return logic.interfaceProduct(name, Integer.parseInt(price));
     }
     public String[] showStore(){
-        return store.getProduct();
+        return logic.showStore();
     }
     public String deleteProduct(String index){
-        store.deleteProduct(Integer.parseInt(index)-1);
-        return "El producto ha sido eliminado";
+        return logic.deleteProduct(Integer.parseInt(index));
     }
     public String getSize(){
-        return String.valueOf(store.getSize());
+        return logic.getSize();
     }
     public String[] sorting(){
-        Sorting sorting = new Sorting();
-        return sorting.sorting(showStore());
+        return logic.sorting();
     }
-    public void buyProduct(String index){
-        store.buyProduct(Integer.parseInt(index)-1);
-    }
+
 }

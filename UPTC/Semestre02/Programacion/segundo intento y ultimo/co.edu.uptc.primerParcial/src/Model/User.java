@@ -33,6 +33,32 @@ public class User {
         return work;
     }
 
+    /*
+    public class Factorial {
+
+    public static long factorialIterative(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+        }
+
+        long result = 1;  // start with 1 (neutral element of multiplication)
+
+        for (int i = 1; i <= n; i++) {
+            result *= i;  // multiply result by each number from 1 up to n
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int num = 5;
+        System.out.println(num + "! = " + factorialIterative(num));
+        // Output: 5! = 120
+    }
+    }
+
+     */
+
     @Override
     public String toString() {
         return "Señor/Señora: " + name + ", su estado de vacunacion es el siguiente: " + state;
