@@ -1,0 +1,153 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.agrupar2982 {
+    width: 1100px;
+    border: 1px solid black;
+    background: white;
+    margin: 15px auto;
+    overflow: hidden;
+}
+
+.cabecera2982 {
+    background: #FFFBB9;
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+.cabecera2982 h1 {
+    text-align: left;
+    margin: 0;
+}
+
+.menu2982 {
+    background: #CCC;
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+.menu2982 ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu2982 li {
+    list-style: none;
+    padding: 5px 15px 5px 5px;
+    font: bold 14px Verdana, sans-serif;
+    display: inline-block;
+}
+
+hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #999;
+}
+
+.contenedor-principal {
+    display: flex;
+}
+
+.seccion2982 {
+    flex: 3;
+    padding: 20px;
+    text-align: left;
+}
+
+.seccion2982 article {
+    margin-bottom: 20px;
+}
+
+.seccion2982 hgroup h1 {
+    margin-bottom: 5px;
+}
+
+.seccion2982 hgroup h2 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.seccion2982 time {
+    color: #777;
+    font-style: italic;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.seccion2982 p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.seccion2982 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+}
+
+.seccion2982 > footer {
+    background: #f5f5f5;
+    padding: 10px;
+    margin: 15px 0;
+    border-top: 1px solid #ddd;
+}
+
+.seccion2982 address {
+    margin: 15px 0;
+    font-style: normal;
+}
+
+.seccion2982 address a {
+    color: #00f;
+    text-decoration: none;
+}
+
+.seccion2982 address a:hover {
+    text-decoration: underline;
+}
+
+.lateral2982 {
+    flex: 1;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    background: #f9f9f9;
+}
+
+.lateral2982 p {
+    padding: 15px;
+    background: white;
+    border: 1px solid #ddd;
+    margin: 0;
+}
+
+.final {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    clear: both;
+}

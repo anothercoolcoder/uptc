@@ -1,0 +1,57 @@
+{
+    "enero": {
+        "disponible": 1000,
+        "metodos_pago": {
+            "Bancolombia": {
+                "Banco": "bancolombia",
+                "tipo": "credito",
+                "cupo": 2000000
+            },
+            "Prueba2": {
+                "Banco": "Bancolombia",
+                "tipo": "debito"
+            }
+        },
+        "ingresos": {
+            "55017daa-8cbc-11f0-a3c6-dcf375e6616a": {
+                "monto": 10000,
+                "razon": "mesada",
+                "metodo": "Bancolombia",
+                "fecha": "2025-09-17 00:00:00"
+            }
+        },
+        "categorias": {
+            "comida": {
+                "limite_gasto": 10000,
+                "gastado": 6000
+            },
+            "magia": {
+                "limite_gasto": 20000,
+                "gastado": 3000
+            }
+        },
+        "transacciones": {
+            "5501f5be-8cbc-11f0-8027-dcf375e6616a": {
+                "monto": 5000,
+                "categoria": "comida",
+                "razon": "Why not",
+                "metodo": "Bancolombia",
+                "fecha": "2025-09-17 00:00:00"
+            },
+            "5501f6dc-8cbc-11f0-976a-dcf375e6616a": {
+                "monto": 1000,
+                "categoria": "comida",
+                "razon": "Why not",
+                "metodo": "Bancolombia",
+                "fecha": "2025-09-17 00:00:00"
+            },
+            "5501f79e-8cbc-11f0-a2c9-dcf375e6616a": {
+                "monto": 3000,
+                "categoria": "magia",
+                "razon": "Why not",
+                "metodo": "Bancolombia",
+                "fecha": "2025-09-17 00:00:00"
+            }
+        }
+    }
+}

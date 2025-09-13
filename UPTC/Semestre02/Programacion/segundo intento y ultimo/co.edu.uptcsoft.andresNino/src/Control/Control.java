@@ -14,8 +14,14 @@ public class Control {
     public String createDoor(String state, String tipoDePago){
         return logic.interfaceDoor(Boolean.parseBoolean(state),Boolean.parseBoolean(tipoDePago));
     }
-    public String[] showDoors(){
+    public String showDoors(){
         return logic.showDoors();
+    }
+    public String showCars(){
+        return logic.vehiculosMostrar();
+    }
+    public String mandarCarro(String index){
+        return logic.validacion(Integer.parseInt(index));
     }
 
 }

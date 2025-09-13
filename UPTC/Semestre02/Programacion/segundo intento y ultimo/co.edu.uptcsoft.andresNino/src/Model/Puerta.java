@@ -8,7 +8,6 @@ public class Puerta {
         this.state = state;
         this.tipoDePago = tipoDePago;
     }
-
     public String isState() {
         if (state){
             return "Abierta";
@@ -16,18 +15,17 @@ public class Puerta {
             return "Cerrado";
         }
     }
-
     public String isTipoDePago() {
         if (tipoDePago){
-            return "Efectivo";
-        }else {
             return "Tarjeta";
+        }else {
+            return "Efectivo";
         }
     }
-
     @Override
     public String toString() {
-        return  "Estado: " + isState() + "\n" +
-                "Tipo de pago: " + isTipoDePago();
+        return  "Puerta" + "\n" +
+                "Estado: " + isState() + "\n" +
+                "Tipo de pago: " + isTipoDePago() + "\n";
     }
 }

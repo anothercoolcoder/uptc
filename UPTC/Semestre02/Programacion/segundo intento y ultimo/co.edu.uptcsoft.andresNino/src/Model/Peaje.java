@@ -1,63 +1,25 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Peaje {
 
     public double tarifaG, tarifaP;
-    public String[] cantidadPuertas;
-    public int count;
-
-    public Peaje(double tarifaG, double tarifaP, int Size) {
+    public ArrayList<Puerta> puertas;
+    public Peaje(double tarifaG, double tarifaP, int size) {
         this.tarifaG = tarifaG;
         this.tarifaP = tarifaP;
-        cantidadPuertas = new String[Size];
+        this.puertas = new ArrayList<>(size);
     }
-
-    public void addDoor(String puerta){
-        if (count <= cantidadPuertas.length){
-            cantidadPuertas[count] = puerta;
-            count++;
-        }
+    public void addDoor(Puerta puerta){
+        puertas.add(puerta);
     }
-
-    public double getTarifaG() {
-        return tarifaG;
-    }
-
-    public void setTarifaG(double tarifaG) {
-        this.tarifaG = tarifaG;
-    }
-
-    public double getTarifaP() {
-        return tarifaP;
-    }
-
-    public void setTarifaP(double tarifaP) {
-        this.tarifaP = tarifaP;
-    }
-
-    public String[] getCantidadPuertas() {
-        return cantidadPuertas;
-    }
-
-    public void setCantidadPuertas(String[] cantidadPuertas) {
-        this.cantidadPuertas = cantidadPuertas;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String[] showDoors(){
-        return cantidadPuertas;
+    public String showDoors(){
+        return puertas.toString();
     }
     @Override
     public String toString() {
         return  "Tarifa de grandes: $" + tarifaG + "\n"+
-                "Tarifa de pequeños: $" + tarifaP +"\n"+
-                "Numero de puertas: " + (cantidadPuertas.length);
+                "Tarifa de pequeños: $" + tarifaP +"\n";
     }
 }
