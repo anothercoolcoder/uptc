@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 
 # Datos del problema
-x = np.array([1, 2, 3, 4, 5, 6])
-y = np.array([40, 85, 140, 200, 225, 245])
+x = np.array([1, 2, 3, 4, 5, 6]) # Valores para x
+y = np.array([40, 85, 140, 200, 225, 245]) # Valores para Y
 
 # Ajuste polinómico de tercer grado
-coef = np.polyfit(x, y, 3)
-modelo = np.poly1d(coef)
+coef = np.polyfit(x, y, 3) # especificamos los valores para "x" & "Y", tambien definimos el ajuste polinomial
+modelo = np.poly1d(coef) #
 
 # Configuración de la figura
 fig, ax = plt.subplots()

@@ -10,6 +10,7 @@ public class Customer {
     public String getName() {
         return name;
     }
+    public String getAddress(){return address;}
 
     public Customer(String name, String address, int id) {
         this.name = name;

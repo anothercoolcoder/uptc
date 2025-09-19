@@ -9,6 +9,11 @@ public class Student extends Person{
     }
 
     @Override
+    public int calculateSalary() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Student{" +
                 "code='" + code + " " + name + " " + id + " ";

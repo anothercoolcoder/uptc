@@ -1,14 +1,29 @@
 package model;
 
 public class OrderDetail {
-    public int quantity;
-    private final Item item;
+    private int quantity;
+    private Item item;
 
-    public OrderDetail(int quantity, Item item) {
+    public OrderDetail( Item item,int quantity) {
         this.quantity = quantity;
         this.item = item;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public double getSubtotal(){
+        return item.getPrice() * quantity;
+    }
     public String getQuantity(){
         return String.valueOf(quantity);
     }
