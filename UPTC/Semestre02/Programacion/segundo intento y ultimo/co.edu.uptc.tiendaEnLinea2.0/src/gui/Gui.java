@@ -23,16 +23,12 @@ public class Gui {
             value = sc.nextLine();
 
             switch (value) {
-                case "1": user(); break;
-                case "2": product(); break;
-                case "3": purchaseProduct(); break;
-                case "4": showProducts(); break;
-                case "5":
-                    System.out.println("Saliendo...");
-                    break;
-                default:
-                    System.out.println("Opcion no valida");
-                    break;
+                case "1" -> user();
+                case "2" -> product();
+                case "3" -> purchaseProduct();
+                case "4" -> showProducts();
+                case "5" -> System.out.println("Saliendo...");
+                default -> System.out.println("Opcion no valida");
             }
         } while (!value.equals("5"));
     }

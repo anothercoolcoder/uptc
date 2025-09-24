@@ -68,13 +68,13 @@ public class PermanentEmployee extends Employee{
     @Override
     public String toString() {
         return "Nombre: " + name + " | " +
-                "Auxilio de transporte: $" + df.format(calculateAuxTrans()) + " \t| " +
-                "Horas extras: $" + df.format(calculateLateHours()) + " \t| " +
-                "Horas extras nocturnas: $" + df.format(calculateNigthHours()) + " \t| " +
-                "Horas extras dominicales: $" + df.format(calculateSundayHours()) + " \t| " +
-                "Salud: -$" + df.format(calculateHealth()) +" \t| "+
-                "Pension: -$" + df.format(calculateRetirement()) +" \t| "+
-                "Salario total: $" + df.format(calculateSalaryFinal());
+                "Auxilio de transporte: " + df.format(calculateAuxTrans()) + " \t| " +
+                "Horas extras: " + df.format(calculateLateHours()) + " \t| " +
+                "Horas extras nocturnas: " + df.format(calculateNigthHours()) + " \t| " +
+                "Horas extras dominicales: " + df.format(calculateSundayHours()) + " \t| " +
+                "Salud: -" + df.format(calculateHealth()) +" \t| "+
+                "Pension: -" + df.format(calculateRetirement()) +" \t| "+
+                "Salario total: " + df.format(calculateSalaryFinal());
     }
 
 }

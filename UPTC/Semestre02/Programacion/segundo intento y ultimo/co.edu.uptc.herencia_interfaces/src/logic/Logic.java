@@ -1,5 +1,6 @@
 package logic;
 
+import model.Employee;
 import model.HourlyEmployee;
 import model.Nomine;
 import model.PermanentEmployee;
@@ -7,11 +8,10 @@ import model.PermanentEmployee;
 public class Logic {
     Nomine nomine = new Nomine();
 
-
     public String createPermanentEmployee(String name, int id,double salary, int workedDays, Double lateHours, Double nigthHours, Double sundayHours){
         PermanentEmployee permanentEmployee = new PermanentEmployee(name, id,workedDays,lateHours,nigthHours,sundayHours,salary);
         nomine.employees.add(permanentEmployee);
-        return "Ha sido agregado exitosamente, un nuevo empleado permanente";
+        return "Ha sido agregado exitosamente, un nuevo empleado ";
     }
     public String createHourlyEmployee(String name, int id, double tarifedHour, int workedHours, double lateHours, double nigthHours, double sundayHours){
         HourlyEmployee hourlyEmployee = new HourlyEmployee(name,id, workedHours,lateHours,nigthHours,sundayHours,tarifedHour);

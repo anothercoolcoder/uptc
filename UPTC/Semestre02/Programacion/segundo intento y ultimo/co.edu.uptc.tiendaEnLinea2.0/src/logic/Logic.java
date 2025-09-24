@@ -1,12 +1,11 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.Date;
 import model.Customer;
 import model.Item;
 import model.Order;
 import model.OrderDetail;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Logic {
     Storage storage = new Storage();
@@ -36,6 +35,7 @@ public class Logic {
 
         if (customerIndex == -1) return "Cliente no encontrado";
         if (productIndex == -1) return "Producto no encontrado";
+
 
         Item product = storage.Items.get(productIndex);
         if (product.getStock() < quantity) {
@@ -84,7 +84,7 @@ public class Logic {
         StringBuilder st = new StringBuilder();
         int count = 1;
         for (Item i: storage.Items ){
-            st.append("#"+ count+ " producto"+"\n" + i.toString() + "\n");
+            st.append("#").append(count).append(" producto\n").append(i.toString()).append("\n");
             count++;
         }
         return st.toString();

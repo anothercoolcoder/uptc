@@ -3,56 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora IMC 2982</title>
     <script type="text/JavaScript">
-        ingresarDatos();   
-        // diseñar una funcion que ingrese los datos
-        function ingresarDatos() {
-            let peso, altura,imc;
-            peso = prompt("Ingrese su peso");
-            altura = prompt("Ingrese su altura");
-            imc = calcularIMC(peso, altura);
-            document.write("IMC = " + clasificacionIMC(imc));
+        ingresarDatos2982();   
+        
+        function ingresarDatos2982() {
+            let peso2982, altura2982, imc2982, nombre2982, id2982, resultadoVerificacion2982;
+            nombre2982 = prompt("Digite el nombre del usuario:");
+            id2982 = prompt("Digite el id del usuario:");
+
+            peso2982 = parseFloat(prompt("Ingrese su peso en kg:"));
+            altura2982 = parseFloat(prompt("Ingrese su altura en metros:"));
             
-        }
-
-        function calcularIMC(peso, altura) {
-            return(peso/(altura**2));
-        }
-
-        function clasificacionIMC(imc) {
-            if (imc<16) {
-                clasificacionIMC = "Delgadez severa";
-            } else{
-                if (imc<= 16 && imc >= 16.99)  {
-                    clasificacionIMC = "Delgadez moderada";
-                }else{
-                    if (imc<= 17 && imc>= 18.4) {
-                        clasificacionIMC = "Delgadez aceptable";
-                    }else{
-                        if (imc<= 18.5 && imc>24.9=) {
-                            clasificacionIMC = "Normal";
-                        }else{
-                            if(imc<=25 && imc>=29.9){
-                                clasificacionIMC = "Sobrepeso";
-                            }else{
-                                if (imc<=30 && imc>=34.9) {
-                                    clasificacionIMC = "Obesidad grado I"
-                                }else{
-                                    if (condition) {
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            if (isNaN(peso2982) || isNaN(altura2982) || peso2982 <= 0 || altura2982 <= 0) {
+                alert("Por favor ingrese valores válidos");
+                return;
             }
-            return clasificacionIMC;
+            
+            imc2982 = calcularIMC2982(peso2982, altura2982);
+            resultadoVerificacion2982 = verificarIMC2982(imc2982);
+            
+            document.write("<h1>Reporte de IMC 2982</h1>");
+            document.write("<p><strong>Nombre:</strong> " + nombre2982 + "</p>");
+            document.write("<p><strong>ID:</strong> " + id2982 + "</p>");
+            document.write("<p><strong>IMC calculado:</strong> " + imc2982.toFixed(2) + "</p>");
+            document.write("<p><strong>Clasificación:</strong> " + clasificacionIMC2982(imc2982) + "</p>");
+            document.write("<p><strong>Verificación del valor:</strong> " + resultadoVerificacion2982 + "</p>");
         }
+
+        function calcularIMC2982(peso2982, altura2982) {
+            return (peso2982 / (altura2982 ** 2));
+        }
+
+        function clasificacionIMC2982(imc2982) {
+            let clasificacion2982;
+            
+            switch (true) {
+                case (imc2982 < 16):
+                    clasificacion2982 = "Delgadez severa";
+                    break;
+                    
+                case (imc2982 >= 16 && imc2982 <= 16.99):
+                    clasificacion2982 = "Delgadez moderada";
+                    break;
+                    
+                case (imc2982 >= 17 && imc2982 <= 18.49):
+                    clasificacion2982 = "Delgadez aceptable";
+                    break;
+                    
+                case (imc2982 >= 18.5 && imc2982 <= 24.99):
+                    clasificacion2982 = "Peso normal";
+                    break;
+                    
+                case (imc2982 >= 25 && imc2982 <= 29.99):
+                    clasificacion2982 = "Sobrepeso";
+                    break;
+                    
+                case (imc2982 >= 30 && imc2982 <= 34.99):
+                    clasificacion2982 = "Obesidad grado I";
+                    break;
+                    
+                case (imc2982 >= 35 && imc2982 <= 39.99):
+                    clasificacion2982 = "Obesidad grado II";
+                    break;
+                    
+                case (imc2982 >= 40):
+                    clasificacion2982 = "Obesidad grado III (Obesidad mórbida)";
+                    break;
+                    
+                default:
+                    clasificacion2982 = "Valor de IMC no válido";
+            }
+            
+            return clasificacion2982;
+        }
+
+        function verificarIMC2982(dato2982) {
+            if (dato2982 > 0) {
+                return `El IMC ${dato2982.toFixed(2)} es MAYOR QUE CERO (POSITIVO)`;
+            } else if (dato2982 < 0) {
+                return `El IMC ${dato2982.toFixed(2)} es MENOR QUE CERO (NEGATIVO)`;
+            } else {
+                return "El IMC es IGUAL A CERO";
+            }
+        }    
     </script>
 </head>
 <body>
-    
 </body>
 </html>
