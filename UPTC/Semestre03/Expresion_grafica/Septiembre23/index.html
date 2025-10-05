@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Biblioteca - Ejercicio Práctico</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .container { border: 2px solid #007bff; padding: 20px; border-radius: 10px; }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; border-left: 4px solid #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; border-left: 4px solid #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📚 Gestor de Biblioteca Simple</h2>
+        
+        <h3>Agregar Nuevo Libro</h3>
+        <input type="text" id="titulo" placeholder="Título del libro">
+        <input type="text" id="autor" placeholder="Autor">
+        <input type="number" id="anio" placeholder="Año de publicación">
+        <input type="number" id="paginas" placeholder="Número de páginas">
+        <input type="number" id="precio" placeholder="Precio ($)" step="0.01">
+        
+        <button onclick="agregarLibro()">Agregar Libro</button>
+        <button onclick="mostrarLibros()">Mostrar Todos los Libros</button>
+        <button onclick="buscarLibro()">Buscar Libro por Título</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

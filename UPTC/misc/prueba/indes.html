@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Evento</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .panel {
+      display: none;
+      text-align: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      max-height: 300px;
+      margin: 20px;
+    }
+
+    .clock {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Panel 1: Logos -->
+  <div class="panel active">
+    <h1>Patrocinadores</h1>
+    <img src="logo1.png" alt="logo1">
+  </div>
+
+  <!-- Panel 2: Evento -->
+  <div class="panel">
+    <h1>Evento Oficial</h1>
+    <img src="evento.png" alt="logo evento">
+  </div>
+
+  <!-- Panel 3: Fotos -->
+  <div class="panel">
+    <h1>Eventos en el Mundo</h1>
+    <img src="foto1.jpg" alt="foto1">
+    <img src="foto2.jpg" alt="foto2">
+  </div>
+
+  <!-- Panel 4: Hora Mundial -->
+  <div class="panel">
+    <h1>Hora Mundial</h1>
+    <div id="clocks" class="clock"></div>
+  </div>
+
+  <script>
+    // Loop de paneles
+    let panels = document.querySelectorAll(".panel");
+    let index = 0;
+
+    setInterval(() => {
+      panels[index].classList.remove("active");
+      index = (index + 1) % panels.length;
+      panels[index].classList.add("active");
+    }, 5000); // cambia cada 5 segundos
+
+    // Reloj mundial
+    function updateClocks() {
+      let now = new Date();
+      let options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+      let india = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', ...options });
+      let japan = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Tokyo', ...options });
+      let colombia = now.toLocaleTimeString('en-US', { timeZone: 'America/Bogota', ...options });
+
+      document.getElementById("clocks").innerHTML = `
+        🇮🇳 India: ${india} <br>
+        🇯🇵 Japón: ${japan} <br>
+        🇨🇴 Colombia: ${colombia}
+      `;
+    }
+
+    setInterval(updateClocks, 1000);
+    updateClocks();
+  </script>
+</body>
+</html>

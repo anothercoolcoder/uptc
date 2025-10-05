@@ -1,0 +1,53 @@
+:root {
+  --fondo2982: #fbf7f2;
+  --tarjeta2982: #fff;
+  --texto2982: #222222;
+  --suave2982: #6b6b6b;
+  --pieDePagina2982: #6b6b6b;
+}
+
+html,body { height:100%; margin:0; }
+
+body.pagina-2982 {
+  font-family: Arial, sans-serif;
+  background: var(--fondo2982);
+  color: var(--texto2982);
+  padding: 1rem;
+  text-align: center;
+}
+
+.receta-2982 {
+  background: var(--tarjeta2982);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.imagenReceta-2982 {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.tituloSeccion-2982 {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.ingredients-2982, .instructions-2982, .ingredientes-2982, .instrucciones-2982 {
+  margin-top: 1rem;
+}
+
+section2982 {
+  display: block;
+}
+
+.pieDePagina-2982 {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--pieDePagina2982);
+  text-align: center;
+}

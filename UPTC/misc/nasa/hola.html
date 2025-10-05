@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relojes Mundiales</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      padding: 20px 15px;
+      overflow: hidden;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .clocks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+    
+    .clock-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .clock-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    
+    .clock-face {
+      width: 150px;
+      height: 150px;
+      border: 6px solid #333;
+      border-radius: 50%;
+      position: relative;
+      background: white;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.1),
+                  0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 12px;
+    }
+    
+    .clock-face::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #333;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      background: #333;
+      border-radius: 10px;
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    
+    .hour-hand {
+      width: 6px;
+      height: 38px;
+      margin-left: -3px;
+      background: #222;
+      z-index: 3;
+    }
+    
+    .minute-hand {
+      width: 4px;
+      height: 52px;
+      margin-left: -2px;
+      background: #444;
+      z-index: 2;
+    }
+    
+    .second-hand {
+      width: 2px;
+      height: 60px;
+      margin-left: -1px;
+      background: #e74c3c;
+      z-index: 1;
+    }
+    
+    .digital-time {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 6px;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .location {
+      font-size: 0.95rem;
+      color: #666;
+      text-align: center;
+    }
+    
+    .city {
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 3px;
+    }
+    
+    .country {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    
+    .flag {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+      
+      .clocks-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .clock-face {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .hour-hand {
+        height: 30px;
+      }
+      
+      .minute-hand {
+        height: 42px;
+      }
+      
+      .second-hand {
+        height: 48px;
+      }
+      
+      .digital-time {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Relojes Mundiales</h1>
+    <div class="clocks-grid" id="clocksGrid"></div>
+  </div>
+
+  <script>
+    const cities = [
+      { city: 'New York City', country: 'United States', timezone: 'America/New_York', flag: '🇺🇸' },
+      { city: 'Mexico City', country: 'Mexico', timezone: 'America/Mexico_City', flag: '🇲🇽' },
+      { city: 'Bogotá', country: 'Colombia', timezone: 'America/Bogota', flag: '🇨🇴' },
+      { city: 'São Paulo', country: 'Brazil', timezone: 'America/Sao_Paulo', flag: '🇧🇷' },
+      { city: 'Bengaluru', country: 'India', timezone: 'Asia/Kolkata', flag: '🇮🇳' },
+      { city: 'Tokyo', country: 'Japan', timezone: 'Asia/Tokyo', flag: '🇯🇵' },
+      { city: 'Toronto', country: 'Canada', timezone: 'America/Toronto', flag: '🇨🇦' },
+      { city: 'London', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' }
+    ];
+
+    const clocksGrid = document.getElementById('clocksGrid');
+
+    // Create clock cards
+    cities.forEach((location, index) => {
+      const card = document.createElement('div');
+      card.className = 'clock-card';
+      card.innerHTML = `
+        <div class="flag">${location.flag}</div>
+        <div class="clock-face" id="clock-${index}">
+          <div class="hand hour-hand" id="hour-${index}"></div>
+          <div class="hand minute-hand" id="minute-${index}"></div>
+          <div class="hand second-hand" id="second-${index}"></div>
+        </div>
+        <div class="digital-time" id="digital-${index}">00:00:00</div>
+        <div class="location">
+          <span class="city">${location.city}</span>
+          <span class="country">${location.country}</span>
+        </div>
+      `;
+      clocksGrid.appendChild(card);
+    });
+
+    function updateClocks() {
+      cities.forEach((location, index) => {
+        try {
+          const now = new Date();
+          const timeString = now.toLocaleString('en-US', { 
+            timeZone: location.timezone,
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+
+          // Update digital time
+          document.getElementById(`digital-${index}`).textContent = timeString;
+
+          // Get time components
+          const timeParts = timeString.split(":");
+          const hours = parseInt(timeParts[0]);
+          const minutes = parseInt(timeParts[1]);
+          const seconds = parseInt(timeParts[2]);
+
+          // Calculate angles
+          const secondAngle = seconds * 6;
+          const minuteAngle = minutes * 6 + seconds * 0.1;
+          const hourAngle = (hours % 12) * 30 + minutes * 0.5;
+
+          // Update hands
+          document.getElementById(`second-${index}`).style.transform = `rotate(${secondAngle}deg)`;
+          document.getElementById(`minute-${index}`).style.transform = `rotate(${minuteAngle}deg)`;
+          document.getElementById(`hour-${index}`).style.transform = `rotate(${hourAngle}deg)`;
+
+        } catch (error) {
+          console.error(`Error updating clock for ${location.city}:`, error);
+        }
+      });
+    }
+
+    // Update clocks every second
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  </script>
+</body>
+</html>
