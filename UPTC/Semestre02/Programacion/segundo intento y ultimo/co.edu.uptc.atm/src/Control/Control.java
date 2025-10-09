@@ -13,4 +13,7 @@ public class Control {
     public String lessMoney(String amount){
         return logic.lessMoney(Double.parseDouble(amount));
     }
+    public boolean isEnough(String amount){
+        return logic.isEnough(Double.parseDouble(amount));
+    }
 }

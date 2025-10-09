@@ -1,0 +1,98 @@
+/* Estilos generales */
+body {
+    background: linear-gradient(135deg, #d3e0ff, #f8f9ff);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px;
+}
+
+/* Contenedor principal */
+.contenedor2982 {
+    background-color: #ffffff;
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Formulario */
+.formulario2982 {
+    margin-top: 15px;
+    color: #34495e;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1.5px solid #a8b2ff;
+    border-radius: 8px;
+    outline: none;
+    width: 60%;
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="number"]:focus {
+    border-color: #5a67d8;
+    box-shadow: 0 0 8px rgba(90, 103, 216, 0.4);
+}
+
+.boton2982 {
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+    font-weight: 500;
+}
+
+.boton2982:hover {
+    background-color: #434acb;
+    transform: scale(1.05);
+}
+
+/* Resultados */
+.resultado2982 {
+    margin-top: 25px;
+    text-align: left;
+    background-color: #f3f4ff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.resultado2982 h3 {
+    color: #3c4186;
+    margin-top: 0;
+    text-align: center;
+}
+
+.resultado2982 p {
+    color: #2f3640;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .contenedor2982 {
+        padding: 20px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+    }
+}

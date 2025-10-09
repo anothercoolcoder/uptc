@@ -28,5 +28,9 @@ public class Logic {
             throw new IllegalArgumentException("El monto ha de ser positivo");
         }
     }
+    public boolean isEnough(double amount){
+        User user =  database.users.get(0);
+        return user.getAmount() > amount;
+    }
 
 }

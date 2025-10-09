@@ -30,7 +30,7 @@ public class Gui {
     public static void enterMoney(){
         String value = null;
         try {
-            System.out.println("¿Cuanto dinero va a retirar?");
+            System.out.println("¿Cuanto dinero va a ingresar?");
             value = scanner.nextLine();
             isNegativeNumber(value);
         } catch (IllegalArgumentException e) {
@@ -44,8 +44,13 @@ public class Gui {
     public static void outMoney(){
         String value = null;
         try {
-            System.out.println("¿Cuanto dinero va a ingresar?");
+            System.out.println("¿Cuanto dinero va a retirar?");
             value = scanner.nextLine();
+            while (isEnough(value)){
+                System.out.println("El valor debe ser igual o menor al total de la cuenta");
+                value = scanner.nextLine();
+
+            }
             isNegativeNumber(value);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -55,7 +60,9 @@ public class Gui {
         System.out.println(control.lessMoney(value));
 
     }
-
+    public static boolean isEnough(String amount){
+        return control.isEnough(amount);
+    }
     public static void isNegativeNumber(String number){
         if (Double.parseDouble(number)<=0){
             throw new IllegalArgumentException("El monto ha de ser positivo");
