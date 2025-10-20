@@ -1,4 +1,4 @@
-package logic.exceptions;
+package logic;
 
 public class InvalidEmailException extends Exception {
     public InvalidEmailException(String message) {

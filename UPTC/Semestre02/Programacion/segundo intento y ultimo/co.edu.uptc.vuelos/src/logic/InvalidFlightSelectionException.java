@@ -1,4 +1,4 @@
-package logic.exceptions;
+package logic;
 
 public class InvalidFlightSelectionException extends Exception {
     public InvalidFlightSelectionException(String message) {

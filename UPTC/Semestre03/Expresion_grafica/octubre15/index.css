@@ -1,0 +1,77 @@
+/* === Estilos Generales 2982 === */
+#body2982 {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 30px;
+}
+
+/* === Título Principal 2982 === */
+#titulo2982 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* === Formulario 2982 === */
+#formulario2982 {
+    background-color: #fff;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#labelAngulo2982 {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#anguloGrados2982 {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#botonCalcular2982 {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2982b9;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#botonCalcular2982:hover {
+    background-color: #1f6e99;
+}
+
+/* === Línea divisoria 2982 === */
+#linea2982 {
+    margin: 30px auto;
+    width: 50%;
+}
+
+/* === Resultados 2982 === */
+#resultado2982 {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#resultado2982 h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#resultado2982 p {
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}

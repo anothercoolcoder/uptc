@@ -1,10 +1,10 @@
 package control;
 
-import logic.exceptions.FlightService;
-import logic.exceptions.ReservationService;
-import logic.exceptions.InvalidAgeException;
-import logic.exceptions.InvalidEmailException;
-import logic.exceptions.InvalidFlightSelectionException;
+import logic.FlightService;
+import logic.ReservationService;
+import logic.InvalidAgeException;
+import logic.InvalidEmailException;
+import logic.InvalidFlightSelectionException;
 import model.Flight;
 import model.Passenger;
 import model.Reservation;

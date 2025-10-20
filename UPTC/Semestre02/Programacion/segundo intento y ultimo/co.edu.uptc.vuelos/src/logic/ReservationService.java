@@ -1,4 +1,4 @@
-package logic.exceptions;
+package logic;
 
 import model.Flight;
 import model.Passenger;

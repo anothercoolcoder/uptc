@@ -1,4 +1,4 @@
-package logic.exceptions;
+package logic;
 
 public class InvalidAgeException extends Exception {
     public InvalidAgeException(String message) {

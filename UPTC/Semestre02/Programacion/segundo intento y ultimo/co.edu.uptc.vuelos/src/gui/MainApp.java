@@ -1,9 +1,9 @@
     package gui;
 
     import control.ReservationController;
-    import logic.exceptions.InvalidAgeException;
-    import logic.exceptions.InvalidEmailException;
-    import logic.exceptions.InvalidFlightSelectionException;
+    import logic.InvalidAgeException;
+    import logic.InvalidEmailException;
+    import logic.InvalidFlightSelectionException;
     import model.Flight;
     import model.Passenger;
     import model.Reservation;
