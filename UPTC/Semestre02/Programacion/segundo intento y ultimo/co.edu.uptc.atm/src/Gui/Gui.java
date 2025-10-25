@@ -5,13 +5,16 @@ import Control.Control;
 import java.util.Scanner;
 
 public class Gui {
-    public static Control control = new Control();
-    public static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    
+    public Control control = new Control();
+    public Scanner scanner = new Scanner(System.in);
+    
+    public Gui(){
         control.defaulter();
         menu();
     }
-    public static void menu(){
+
+    public void menu(){
         String value;
         do {
             System.out.println("Escriba la opcion deseada");
@@ -27,7 +30,7 @@ public class Gui {
             }
         }while (!value.equalsIgnoreCase("3"));
     }
-    public static void enterMoney(){
+    public void enterMoney(){
         String value = null;
         try {
             System.out.println("¿Cuanto dinero va a ingresar?");
@@ -41,7 +44,7 @@ public class Gui {
         System.out.println(control.addMoney(value));
     }
 
-    public static void outMoney(){
+    public void outMoney(){
         String value = null;
         try {
             System.out.println("¿Cuanto dinero va a retirar?");
@@ -60,10 +63,10 @@ public class Gui {
         System.out.println(control.lessMoney(value));
 
     }
-    public static boolean isEnough(String amount){
+    public  boolean isEnough(String amount){
         return control.isEnough(amount);
     }
-    public static void isNegativeNumber(String number){
+    public void isNegativeNumber(String number){
         if (Double.parseDouble(number)<=0){
             throw new IllegalArgumentException("El monto ha de ser positivo");
         }

@@ -1,6 +1,6 @@
 package Logic;
 
-import model.User;
+import Model.User;
 
 public class Logic {
     Database database = new Database();

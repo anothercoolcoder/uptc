@@ -1,6 +1,6 @@
-package logic;
+package gui;
 
-public class UserExceptions{
+public class GuiExceptions {
 
     public static class InvalidNameException extends Exception{
         public InvalidNameException(String message){
