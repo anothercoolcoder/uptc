@@ -21,8 +21,8 @@ public class Logic {
         int value;
         do {
             value = (int)(Math.random()*(50-10+1))+10;
-            return String.valueOf(value);
         }while (DuplicateId(String.valueOf(value)));
+        return String.valueOf(value);
     }
     public String showProducts(){
         if (products.isEmpty()){
@@ -67,5 +67,11 @@ public class Logic {
         }
         return Ids;
     }
-
+    public String updateProduct(String id, int amount, String name, String category){
+        Product product = searchProduct(id);
+        product.setAmount(amount);
+        product.setName(name);
+        product.setCategory(category);
+        return product.toString();
+    }
 }

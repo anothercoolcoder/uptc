@@ -1,7 +1,6 @@
 package control;
 
 import logic.Logic;
-import logic.LogicExceptions;
 
 public class Control {
     Logic logic = new Logic();
@@ -17,14 +16,10 @@ public class Control {
     public String showProducts(){
         return logic.showProducts();
     }
-    public String verifyUniqueName() throws LogicExceptions.DuplicateId {
-        return logic.showProducts();
-    }
     public String[] Ids(){
         return logic.productsId();
     }
     public String updateProduct(String id, String amount, String name, String category){
-        return null;
+        return logic.updateProduct(id, Integer.parseInt(amount),name, category);
     }
-
 }

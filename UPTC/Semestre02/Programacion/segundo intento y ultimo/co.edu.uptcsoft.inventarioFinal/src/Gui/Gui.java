@@ -1,7 +1,6 @@
 package Gui;
 
 import control.Control;
-import logic.LogicExceptions;
 
 import javax.swing.*;
 
@@ -89,7 +88,6 @@ public class Gui {
                 JOptionPane.showMessageDialog(null, message);
         }
     }
-
     public void deleteProduct() {
         String[] options = control.Ids();
         String selection = (String) JOptionPane.showInputDialog(
@@ -117,10 +115,29 @@ public class Gui {
                 options,
                 options[0]
         );
-        JOptionPane.showMessageDialog(
-                null,
-                control.deleteProduct(selection)
-        );
+        JTextField amountField = new JTextField(10);
+        JTextField nameField = new JTextField(10);
+        JComboBox<String> categoryBox = new JComboBox<>(new String[]{"Papeleria","Aseo","Miscelanea"});
+
+        JPanel panel = new JPanel(); // mandar vacio, arreglar
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(new JLabel("Cantidad: "));
+        panel.add(amountField);
+        panel.add(new JLabel("Nombre: "));
+        panel.add(nameField);
+        panel.add(new JLabel("Categoria: "));
+        panel.add(categoryBox);
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "Actulice el producto",JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION){
+            String name = nameField.getText();
+            String amount = amountField.getText();
+            String category = (String) categoryBox.getSelectedItem();
+
+            String message = control.updateProduct(selection,amount,name,category);
+            JOptionPane.showMessageDialog(null, message);
+        }
     }
     public void showProducts() {
         JOptionPane.showMessageDialog(null, control.showProducts());
