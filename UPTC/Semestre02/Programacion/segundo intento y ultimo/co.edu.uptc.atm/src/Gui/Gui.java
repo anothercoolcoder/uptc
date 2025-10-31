@@ -2,10 +2,13 @@ package Gui;
 
 import Control.Control;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Gui {
-    
+
     public Control control = new Control();
     public Scanner scanner = new Scanner(System.in);
     
@@ -15,20 +18,25 @@ public class Gui {
     }
 
     public void menu(){
-        String value;
+        int selection;
+        Object[] options = {"Sacar Dinero", "Ingresar Dinero","Salir..."};
         do {
-            System.out.println("Escriba la opcion deseada");
-            System.out.println("1. Sacar dinero");
-            System.out.println("2. Ingresar dinero");
-            System.out.println("3. Salir...");
-            value = scanner.nextLine();
-            switch (value){
-                case "1" -> outMoney();
-                case "2" -> enterMoney();
-                case "3" -> System.out.println("Saliendo...");
-                default -> System.out.println("Valor invalido...");
+            selection = JOptionPane.showOptionDialog(
+                    null,
+                    "Por favor, selecciona una opcion",
+                    "Selecciona una opcion",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            switch (selection){
+                case 1 -> outMoney();
+                case 2 -> enterMoney();
+                case 3 -> System.out.println("Saliendo...");
             }
-        }while (!value.equalsIgnoreCase("3"));
+        }while (selection != 2 && selection != JOptionPane.CLOSED_OPTION);
     }
     public void enterMoney(){
         String value = null;

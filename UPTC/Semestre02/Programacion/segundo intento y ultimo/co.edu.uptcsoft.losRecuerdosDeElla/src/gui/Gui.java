@@ -2,6 +2,7 @@ package gui;
 
 import control.Control;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Gui {
@@ -12,6 +13,25 @@ public class Gui {
     }
 
     public static void menu(){
+        int selection;
+        Object[] options = {"Añadir un producto", "Ingresar Dinero","Salir..."};
+        do {
+            selection = JOptionPane.showOptionDialog(
+                    null,
+                    "Por favor, selecciona una opcion",
+                    "Selecciona una opcion",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            switch (selection){
+                case 0 -> addProduct();
+                case 1 -> enterMoney();
+                case 2 -> System.out.println("Saliendo...");
+            }
+        }while (selection != 2 && selection != JOptionPane.CLOSED_OPTION);
         String value;
         do {
             System.out.println("¿Que desea hacer hoy?");
