@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Logic {
     ArrayList<Product> products = new ArrayList<>();
     public void defaulter(){
-        Product paperSheets = new Product(idCreator(),100,"Hojas de papel","A4");
-        Product pens = new Product(idCreator(),10,"Lapiceros","Kilometrico");
+        Product paperSheets = new Product(idCreator(),100,"Hojas de papel","Papeleria");
+        Product pens = new Product(idCreator(),10,"Lapiceros","Papeleria");
         products.add(paperSheets);
         products.add(pens);
     }
@@ -71,6 +71,7 @@ public class Logic {
         Product product = searchProduct(id);
         product.setAmount(amount);
         product.setName(name);
+        System.out.printf(product.getName());
         product.setCategory(category);
         return product.toString();
     }
