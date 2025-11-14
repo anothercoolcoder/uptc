@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import control.Control;
 
@@ -63,9 +63,90 @@ public class Gui {
             }
         }while (!"Salir".equalsIgnoreCase(selection));
     }
-    public void askProduct(){
+    public void askProduct() {
+        String[] options = control.Ids();
+        if (options == null || options.length == 0) {
+            JOptionPane.showMessageDialog(null, "No hay productos disponible");
+            return;
+        }
 
+        String selection = (String) JOptionPane.showInputDialog(
+                null,
+                "Elije el id del producto",
+                "Ordenar producto",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (selection == null) return;
+
+        JTextField amountField = new JTextField(10);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(new JLabel("Cantidad: "));
+        panel.add(amountField);
+
+        int result = JOptionPane.showConfirmDialog(
+                null,
+                panel,
+                "Producto solicitado",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (result != JOptionPane.OK_OPTION) return;
+
+        int amount = -1;
+
+        while (true) {
+            try {
+                amount = Integer.parseInt(amountField.getText());
+                if (amount <= 0) {
+                    throw new IllegalArgumentException("Cantidad debe ser positiva.");
+                }
+                break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Ingrese un numero valido.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                amountField.setText("");
+
+                int retry = JOptionPane.showConfirmDialog(
+                        null,
+                        panel,
+                        "Solicitar un producto",
+                        JOptionPane.OK_CANCEL_OPTION
+                );
+                if (retry != JOptionPane.OK_OPTION) return;
+
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Cantidad debe ser positiva.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                amountField.setText("");
+
+                int retry = JOptionPane.showConfirmDialog(
+                        null,
+                        panel,
+                        "Request product",
+                        JOptionPane.OK_CANCEL_OPTION
+                );
+                if (retry != JOptionPane.OK_OPTION) return;
+            }
+        }
+
+        String message = control.askProduct(selection, String.valueOf(amount));
+        JOptionPane.showMessageDialog(null, message);
     }
+
     public void menuAdmin(){
         String selection;
         String[] options ={"Añadir existencia", "Borrar existencia", "Actualizar existencia", "Mostrar productos", "Salir"};
@@ -194,52 +275,53 @@ public class Gui {
         panel.add(new JLabel("Categoria: "));
         panel.add(categoryBox);
 
-        int result = JOptionPane.showConfirmDialog(null, panel, "Añada un producto",JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.OK_OPTION){
-            String name = nameField.getText();
-            int amount = -1;
-            String category = (String) categoryBox.getSelectedItem();
-            while (true){
-                try{
-                    amount = Integer.parseInt(amountField.getText());
-                    if (amount <= 0){
-                        throw new IllegalArgumentException("La cantidad ha de ser positiva");
-                    }
-                    break;
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Entre un numero valido para cantidad",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                    amountField.setText("");
-                    int retry = JOptionPane.showConfirmDialog(
-                            null,
-                            panel,
-                            "Añada un producto",
-                            JOptionPane.OK_CANCEL_OPTION
-                    );
-                    if (retry != JOptionPane.OK_OPTION) return;
-                } catch (IllegalArgumentException e){
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "La cantidad debe ser un numero positivo",
-                            "Error",
-                            JOptionPane.OK_CANCEL_OPTION
-                    );
-                    amountField.setText("");
-                    int retry = JOptionPane.showConfirmDialog(
-                            null,
-                            panel,
-                            "Añada un producto",
-                            JOptionPane.OK_CANCEL_OPTION
-                    );
-                    if (retry != JOptionPane.OK_OPTION)return;
-                }
-            }
-            String message = control.updateProduct(selection,String.valueOf(amount),name,category);
-            JOptionPane.showMessageDialog(null, message);
+        int result = JOptionPane.showConfirmDialog(null, panel, "Actualizar producto",
+                JOptionPane.OK_CANCEL_OPTION);
+
+        if (result != JOptionPane.OK_OPTION) return;
+
+        // Validate name
+        String name = nameField.getText().trim();
+        while (name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+
+            result = JOptionPane.showConfirmDialog(null, panel,
+                    "Actualizar producto", JOptionPane.OK_CANCEL_OPTION);
+
+            if (result != JOptionPane.OK_OPTION) return;
+
+            name = nameField.getText().trim();
         }
+
+        // Validate amount
+        int amount = -1;
+        while (true) {
+            try {
+                amount = Integer.parseInt(amountField.getText());
+                if (amount <= 0)
+                    throw new IllegalArgumentException("Debe ser positivo.");
+                break;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Cantidad inválida. Use un número positivo.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+
+                amountField.setText("");
+
+                result = JOptionPane.showConfirmDialog(null, panel,
+                        "Actualizar producto", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result != JOptionPane.OK_OPTION) return;
+            }
+        }
+
+        String category = (String) categoryBox.getSelectedItem();
+
+        String message = control.updateProduct(selection,
+                String.valueOf(amount), name, category);
+
+        JOptionPane.showMessageDialog(null, message);
     }
     public void showProducts() {
         JOptionPane.showMessageDialog(null, control.showProducts());

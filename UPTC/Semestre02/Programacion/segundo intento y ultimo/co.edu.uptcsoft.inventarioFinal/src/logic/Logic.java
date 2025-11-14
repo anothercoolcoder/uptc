@@ -1,10 +1,13 @@
 package logic;
 
 import model.Product;
+import persistence.Persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Logic {
+
     ArrayList<Product> products = new ArrayList<>();
     public void defaulter(){
         Product paperSheets = new Product(idCreator(),100,"Hojas de papel","Papeleria");
@@ -12,6 +15,7 @@ public class Logic {
         products.add(paperSheets);
         products.add(pens);
     }
+
     public String createProduct(int amount, String name, String category){
         Product product = new Product(idCreator(), amount, name, category);
         products.add(product);
@@ -75,4 +79,25 @@ public class Logic {
         product.setCategory(category);
         return product.toString();
     }
+    public String askProduct(String id, int amount) {
+        Product product = searchProduct(id);
+
+
+        if (amount <= 0) {
+            return "La cantidad debe ser positiva";
+        }
+
+        int current = product.getAmount();
+
+        if (current < amount) {
+            return "No hay suficiente stock disponible. Stock actual: " + current + ".";
+        }
+
+        product.setAmount(current - amount);
+
+        return "Producto solicitado exitosamente. " +
+                "Tu ordenaste " + amount + " unidades de " + product.getName() + " . " +
+                "Stock final: " + product.getAmount() + ".";
+    }
+
 }
