@@ -1,0 +1,32 @@
+[
+  {
+    "amount": 100,
+    "name": "Hojas de papel",
+    "category": "Papeleria",
+    "id": "14"
+  },
+  {
+    "amount": 10,
+    "name": "Lapiceros",
+    "category": "Papeleria",
+    "id": "22"
+  },
+  {
+    "amount": 125,
+    "name": "a",
+    "category": "Papeleria",
+    "id": "43"
+  },
+  {
+    "amount": 12,
+    "name": "b",
+    "category": "Papeleria",
+    "id": "20"
+  },
+  {
+    "amount": 123,
+    "name": "a",
+    "category": "Papeleria",
+    "id": "44"
+  }
+]

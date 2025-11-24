@@ -4,9 +4,7 @@
 
     public class Control {
         Logic logic = new Logic();
-        public void defaulter(){
-            logic.defaulter();
-        }
+
         public String createProduct(String amount, String name, String category){
             return logic.createProduct(Integer.parseInt(amount), name, category);
         }

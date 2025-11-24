@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/extras/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/extras/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/gson/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/gson/src/main/java-templates" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/gson/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/metrics/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/proto/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/proto/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/test-graal-native-image/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/test-jpms/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/test-shrinker/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/gson-gson-parent-2.13.2/test-shrinker/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

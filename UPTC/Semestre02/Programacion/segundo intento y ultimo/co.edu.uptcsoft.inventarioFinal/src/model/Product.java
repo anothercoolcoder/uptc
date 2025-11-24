@@ -19,10 +19,6 @@ public class Product {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public int getAmount() {
         return amount;
     }
@@ -33,10 +29,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public void setCategory(String category) {
