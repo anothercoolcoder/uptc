@@ -73,5 +73,4 @@ public class Logic {
         }
         return sb.length() == 0 ? "No hay animales de la especie" + specie : sb.toString();
     }
-
 }

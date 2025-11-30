@@ -3,23 +3,22 @@ package logic;
 import model.Product;
 import persistence.Persistence;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Logic {
 
     private final Persistence persistence = new Persistence();
-    private ArrayList<Product> products = new ArrayList<>();
+    private HashMap<String, Product> products = new HashMap<>();
 
     public Logic() {
         loadProducts();
     }
 
     private void loadProducts() {
-        List<Product> loaded = persistence.load();
+        HashMap<String, Product> loaded = persistence.load();
 
         if (loaded != null && !loaded.isEmpty()) {
-            products = new ArrayList<>(loaded);
+            products = new HashMap<>(loaded);
         } else {
             // Si no hay datos guardados, inicializar con productos por defecto
             initializeDefaults();
@@ -32,15 +31,15 @@ public class Logic {
 
     // Este método solo se llama si no hay productos guardados
     private void initializeDefaults() {
-        products.add(new Product(idCreator(), 100, "Hojas de papel", "Papeleria"));
-        products.add(new Product(idCreator(), 10, "Lapiceros", "Papeleria"));
-        saveNow();
-    }
+        String id1 = idCreator();
+        Product p1 = new Product(id1, 100, "Hojas de papel", "Papeleria");
+        products.put(p1.getName(), p1);
 
-    // Método público para reiniciar a valores por defecto (si es necesario)
-    public void resetToDefaults() {
-        products.clear();
-        initializeDefaults();
+        String id2 = idCreator();
+        Product p2 = new Product(id2, 10, "Lapiceros", "Papeleria");
+        products.put(p2.getName(), p2);
+
+        saveNow();
     }
 
     public String createProduct(int amount, String name, String category) {
@@ -55,7 +54,16 @@ public class Logic {
             return "La cantidad debe ser positiva.";
         }
 
-        products.add(new Product(idCreator(), amount, name.trim(), category.trim()));
+        String normalizedName = name.trim();
+
+        // Verificar si ya existe un producto con ese nombre
+        if (products.containsKey(normalizedName)) {
+            return "Ya existe un producto con el nombre '" + normalizedName + "'.";
+        }
+
+        String id = idCreator();
+        Product newProduct = new Product(id, amount, normalizedName, category.trim());
+        products.put(normalizedName, newProduct);
         saveNow();
         return "El producto ha sido creado exitosamente";
     }
@@ -80,7 +88,7 @@ public class Logic {
         }
         StringBuilder st = new StringBuilder("Lista de productos:\n\n");
         int index = 1;
-        for (Product p : products) {
+        for (Product p : products.values()) {
             st.append(index++).append(". ").append(p).append("\n");
         }
         return st.toString();
@@ -89,39 +97,32 @@ public class Logic {
     public boolean duplicateId(String id) {
         if (id == null) return false;
 
-        for (Product p : products) {
-            if (p.getId().equalsIgnoreCase(id)) {
+        for (Product p : products.values()) {
+            if (p.getId().equals(id)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String deleteProduct(String id) {
-        if (id == null || id.trim().isEmpty()) {
-            return "ID inválido.";
+    public String deleteProduct(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return "Nombre inválido.";
         }
 
-        Product product = searchProduct(id);
+        Product product = products.remove(name.trim());
 
         if (product == null) {
-            return "No existe un producto con ese identificador.";
+            return "No existe un producto con ese nombre.";
         }
 
-        products.remove(product);
         saveNow();
         return "El producto '" + product.getName() + "' ha sido removido exitosamente";
     }
 
-    public Product searchProduct(String id) {
-        if (id == null) return null;
-
-        for (Product p : products) {
-            if (p.getId().equalsIgnoreCase(id)) {
-                return p;
-            }
-        }
-        return null;
+    public Product searchProduct(String name) {
+        if (name == null) return null;
+        return products.get(name.trim());
     }
 
     public String[] productsId() {
@@ -129,18 +130,14 @@ public class Logic {
             return new String[0];
         }
 
-        String[] ids = new String[products.size()];
-        for (int i = 0; i < products.size(); i++) {
-            ids[i] = products.get(i).getId();
-        }
-        return ids;
+        return products.keySet().toArray(new String[0]);
     }
 
-    public String updateProduct(String id, int amount, String name, String category) {
-        if (id == null || id.trim().isEmpty()) {
-            return "ID inválido.";
+    public String updateProduct(String oldName, int amount, String newName, String category) {
+        if (oldName == null || oldName.trim().isEmpty()) {
+            return "Nombre inválido.";
         }
-        if (name == null || name.trim().isEmpty()) {
+        if (newName == null || newName.trim().isEmpty()) {
             return "El nombre del producto no puede estar vacío.";
         }
         if (category == null || category.trim().isEmpty()) {
@@ -150,29 +147,44 @@ public class Logic {
             return "La cantidad debe ser positiva.";
         }
 
-        Product product = searchProduct(id);
+        String normalizedOldName = oldName.trim();
+        String normalizedNewName = newName.trim();
+
+        Product product = searchProduct(normalizedOldName);
 
         if (product == null) {
-            return "No existe un producto con ese identificador.";
+            return "No existe un producto con ese nombre.";
+        }
+
+        // Si el nombre cambió, verificar que el nuevo nombre no exista
+        if (!normalizedOldName.equals(normalizedNewName)) {
+            if (products.containsKey(normalizedNewName)) {
+                return "Ya existe un producto con el nombre '" + normalizedNewName + "'.";
+            }
+
+            // Remover con el nombre viejo y agregar con el nuevo
+            products.remove(normalizedOldName);
         }
 
         product.setAmount(amount);
-        product.setName(name.trim());
+        product.setName(normalizedNewName);
         product.setCategory(category.trim());
+
+        products.put(normalizedNewName, product);
         saveNow();
 
         return "Producto actualizado exitosamente:\n" + product;
     }
 
-    public String askProduct(String id, int amount) {
-        if (id == null || id.trim().isEmpty()) {
-            return "ID inválido.";
+    public String askProduct(String name, int amount) {
+        if (name == null || name.trim().isEmpty()) {
+            return "Nombre inválido.";
         }
 
-        Product product = searchProduct(id);
+        Product product = searchProduct(name);
 
         if (product == null) {
-            return "No existe un producto con ese identificador.";
+            return "No existe un producto con ese nombre.";
         }
 
         if (amount <= 0) {
@@ -197,7 +209,35 @@ public class Logic {
         return products.size();
     }
 
-    public ArrayList<Product> getProducts() {
-        return new ArrayList<>(products); // Retorna copia para evitar modificaciones externas
+    public HashMap<String, Product> getProducts() {
+        return new HashMap<>(products); // Retorna copia para evitar modificaciones externas
+    }
+
+    public String checkLowStock() {
+        StringBuilder lowStockAlert = new StringBuilder();
+        int threshold = 10; // Umbral de stock bajo
+
+        for (Product p : products.values()) {
+            if (p.getAmount() < threshold && p.getAmount() > 0) {
+                lowStockAlert.append("⚠️ ")
+                        .append(p.getName())
+                        .append(": ")
+                        .append(p.getAmount())
+                        .append(" unidades\n");
+            }
+        }
+
+        return lowStockAlert.toString();
+    }
+
+    public boolean hasLowStock() {
+        int threshold = 10;
+
+        for (Product p : products.values()) {
+            if (p.getAmount() < threshold && p.getAmount() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

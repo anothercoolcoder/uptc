@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menú de Ejercicios — 2982</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="funciones.js"></script>
+  <script src="hiperbolicas.js"></script>
+  <script src="arregloUni.js"></script>
+  <script src="arregloBi.js"></script>
+  <script src="matrices.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>Menú de Ejercicios - Andres Niño Araujo (202422982)</h2>
+
+    <nav>
+      <button data-target="maclaurin2982">Serie de Maclaurin (Seno)</button>
+      <button data-target="hiperbolicas2982">Funciones Hiperbólicas</button>
+      <button data-target="arreglo1D2982">Arreglo Unidimensional</button>
+      <button data-target="arreglo2D2982">Arreglo Bidimensional</button>
+      <button data-target="matrices2982">Operaciones con Matrices</button>
+      <button data-target="about2982">About Me</button>
+    </nav>
+
+    <!-- SERIE MACLAURIN -->
+    <section id="maclaurin2982">
+      <h3>Serie de Maclaurin para calcular el seno</h3>
+
+      <label>Ángulo en grados:</label>
+      <input id="angulo2982" type="number" value="30">
+
+      <label>Número de términos:</label>
+      <input id="terminosSin2982" type="number" value="6">
+
+      <button onclick="procesarFormulario2982()">Calcular</button>
+
+      <div id="resultadoSin2982" class="result">Aquí aparecerá el resultado...</div>
+      <hr>
+
+      <h4>Resultados detallados:</h4>
+
+      <p>Ángulo: <span id="resAngulo2982"></span></p>
+      <p>Radianes: <span id="resRadianes2982"></span></p>
+      <p>Seno: <span id="resSeno2982"></span></p>
+      <p>Coseno: <span id="resCoseno2982"></span></p>
+      <p>Tangente: <span id="resTan2982"></span></p>
+      <p>Cotangente: <span id="resCot2982"></span></p>
+      <p>Secante: <span id="resSec2982"></span></p>
+      <p>Cosecante: <span id="resCsc2982"></span></p>
+    </section>
+
+    <!-- HIPERBÓLICAS -->
+    <section id="hiperbolicas2982">
+      <h3>Funciones Hiperbólicas mediante series de Taylor</h3>
+
+      <label>Valor de x:</label>
+      <input id="valorHiper2982" type="number" value="1">
+
+      <label>Número de términos:</label>
+      <input id="terminosHiper2982" type="number" value="6">
+
+      <button onclick="calcularHiper2982()">Calcular</button>
+
+      <div id="resultadoHiper2982" class="result">Aquí aparecerá el resultado...</div>
+    </section>
+
+    <!-- ARREGLO 1D -->
+    <section id="arreglo1D2982">
+      <h3>Arreglo Unidimensional</h3>
+
+      <label>Cantidad de datos:</label>
+      <input id="cantidad1D2982" type="number" value="10">
+
+      <label>Valor mínimo:</label>
+      <input id="min1D2982" type="number" value="0">
+
+      <label>Valor máximo:</label>
+      <input id="max1D2982" type="number" value="100">
+
+      <button onclick="generarArray2982()">Ingresar n datos aleatorios</button>
+      <button onclick="sumarArray2982()">Calcular suma</button>
+      <button onclick="promedioArray2982()">Calcular promedio</button>
+      <button onclick="cantSobreProm2982()">Cantidad sobre el promedio</button>
+      <button onclick="menorPos2982()">Dato menor con posición</button>
+      <button onclick="mayorPos2982()">Dato mayor con posición</button>
+      <button onclick="ordenarAsc2982()">Orden ascendente</button>
+      <button onclick="ordenarDesc2982()">Orden descendente</button>
+
+      <pre id="vistaArray2982">[]</pre>
+      <div id="resultadoArray2982" class="result">Resultado aquí...</div>
+    </section>
+
+    <!-- ARREGLO 2D -->
+    <section id="arreglo2D2982">
+      <h3>Arreglo Bidimensional</h3>
+
+      <label>Número de filas:</label>
+      <input id="filas2982" type="number" value="3">
+
+      <label>Número de columnas:</label>
+      <input id="columnas2982" type="number" value="3">
+
+      <button onclick="generarMatriz2982()">Generar matriz</button>
+      <button onclick="llenarMatriz2982()">Ingresar datos aleatorios</button>
+
+      <label>Acceso a elemento (fila):</label>
+      <input id="filaAcceso2982" type="number" value="0">
+
+      <label>Acceso a elemento (columna):</label>
+      <input id="colAcceso2982" type="number" value="0">
+
+      <button onclick="accederElemento2982()">Acceder</button>
+
+      <pre id="vistaMatriz2982">[]</pre>
+      <div id="resultadoMatriz2982" class="result">Resultado aquí...</div>
+    </section>
+
+    <!-- MATRICES -->
+    <section id="matrices2982">
+      <h3>Operaciones con Matrices</h3>
+
+      <label>Filas:</label>
+      <input id="filasOps2982" type="number" value="3">
+
+      <label>Columnas:</label>
+      <input id="colsOps2982" type="number" value="3">
+
+      <button onclick="generarMatricesOps2982()">Generar matrices A y B</button>
+      <button onclick="sumarMatrices2982()">Sumar</button>
+      <button onclick="restarMatrices2982()">Restar</button>
+      <button onclick="multiplicarMatrices2982()">Multiplicar</button>
+
+      <pre id="vistaA2982">A:</pre>
+      <pre id="vistaB2982">B:</pre>
+      <div id="resultadoOps2982" class="result">Resultado aquí...</div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about2982" style="display:none;">
+      <h3>About Me</h3>
+
+      <p><strong>Nombre:</strong> Andres Alejandro Niño Araujo</p>
+      <p><strong>Código:</strong> 202422982</p>
+      <p><strong>Carrera:</strong> Ingeniería de Sistemas y Ciencias de la Computación</p>
+      <p><strong>Universidad:</strong> UPTC - Seccional Sogamoso</p>
+      <p><strong>Semestre:</strong> 3</p>
+
+      <h4>Intereses</h4>
+      <ul>
+        <li>Desarrollo de software</li>
+        <li>Inteligencia Artificial</li>
+        <li>Matemáticas aplicadas</li>
+        <li>Ciclismo & gimnasio</li>
+        <li>Poesía y literatura</li>
+      </ul>
+
+      <h4>Proyecto actual</h4>
+      <p>Esta página recopila todos los ejercicios exigidos en clase y está desarrollada completamente en JavaScript usando mi número 2982.</p>
+    </section>
+    <!-- EULER EXPONENTIAL FUNCTIONS -->
+<section id="euler2982">
+  <h3>Cálculo de e^x y e^-x</h3>
+
+  <label>Valor de x:</label>
+  <input id="valorEuler2982" type="number" value="1">
+
+  <button onclick="calcularEuler2982()">Calcular</button>
+
+  <div id="resultadoEuler2982" class="result">Aquí aparecerá el resultado...</div>
+</section>
+
+
+  </div>
+
+  <script>
+    document.querySelectorAll("button[data-target]").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll("section").forEach(s => s.style.display = "none");
+        document.getElementById(btn.dataset.target).style.display = "block";
+      };
+    });
+  </script>
+
+</body>
+</html>

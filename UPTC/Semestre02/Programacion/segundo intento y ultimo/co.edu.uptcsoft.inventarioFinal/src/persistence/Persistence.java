@@ -7,8 +7,7 @@ import model.Product;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Persistence {
 
@@ -18,9 +17,9 @@ public class Persistence {
             .setPrettyPrinting()
             .create();
 
-    public boolean save(List<Product> list) {
+    public boolean save(HashMap<String, Product> products) {
         try (Writer writer = new FileWriter(FILE_NAME)) {
-            gson.toJson(list, writer);
+            gson.toJson(products, writer);
             return true;
         } catch (IOException e) {
             System.err.println("Error al guardar productos: " + e.getMessage());
@@ -29,22 +28,22 @@ public class Persistence {
         }
     }
 
-    public List<Product> load() {
+    public HashMap<String, Product> load() {
         File file = new File(FILE_NAME);
 
-        // Si el archivo no existe, retornar lista vacía
+        // Si el archivo no existe, retornar HashMap vacío
         if (!file.exists()) {
-            return new ArrayList<>();
+            return new HashMap<>();
         }
 
         try (Reader reader = new FileReader(file)) {
-            Type type = new TypeToken<List<Product>>(){}.getType();
-            List<Product> loaded = gson.fromJson(reader, type);
-            return loaded != null ? loaded : new ArrayList<>();
+            Type type = new TypeToken<HashMap<String, Product>>(){}.getType();
+            HashMap<String, Product> loaded = gson.fromJson(reader, type);
+            return loaded != null ? loaded : new HashMap<>();
         } catch (IOException e) {
             System.err.println("Error al cargar productos: " + e.getMessage());
             e.printStackTrace();
-            return new ArrayList<>();
+            return new HashMap<>();
         }
     }
 

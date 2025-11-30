@@ -24,4 +24,12 @@
             return logic.askProduct(id, Integer.parseInt(amount));
         }
 
+        public String checkLowStock() {
+            return logic.checkLowStock();
+        }
+
+        public boolean hasLowStock() {
+            return logic.hasLowStock();
+        }
+
     }

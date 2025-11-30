@@ -3,7 +3,7 @@ package main;
 import gui.Gui;
 
 public class Main {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Gui gui = new Gui();
     }
 }
