@@ -1,8 +1,12 @@
 import view.StudentView;
+import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-        StudentView student = new StudentView();
-        student.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            StudentView view = new StudentView();
+            view.setLocationRelativeTo(null); // center window
+            view.setVisible(true);
+        });
     }
 }

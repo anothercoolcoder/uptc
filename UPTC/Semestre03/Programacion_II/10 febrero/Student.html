@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de estudiantes</h1>
+    <table>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Promedio</th>
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+    <script>
+        async function obtenerInfo() {
+            console.log("Esta funcionando")
+            answser =  await fetch("http://127.0.0.1:5000/mentionStudents")
+            console.log(answser);
+
+            data = await answser.json();
+            console.log(data)
+            bodyTable = document.getElementById("tableBody")
+            bodyTable.innerHTML = " ";
+            data.forEach(student => {
+                row = document.createElement("tr");
+                row.innerHTML = `<td>${student.name}</td><td>${student.age}</td><td>${student.averageGrades}</td>`;
+                bodyTable.appendChild(row)
+            });
+        }
+        document.addEventListener('DOMContentLoaded',obtenerInfo);
+        function addStudent(){
+            const
+        }
+        fetch("http://127.0.0.1:5000/mentionStudents",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(student)
+        }
+    </script>
+</body>
+</html>

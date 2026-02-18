@@ -24,7 +24,8 @@ public class StudentView extends JFrame {
     private DefaultTableModel model;
     public StudentView(){
         setTitle("Estudiantes Programacion 2 2026");
-        setSize(600,400);
+        pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
