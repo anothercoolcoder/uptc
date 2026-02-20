@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<data>
+  <row>
+    <index>0</index>
+    <nombre>Jorge</nombre>
+    <edad>31</edad>
+    <promedio>4</promedio>
+  </row>
+  <row>
+    <index>1</index>
+    <nombre>Ana</nombre>
+    <edad>27</edad>
+    <promedio>2</promedio>
+  </row>
+  <row>
+    <index>2</index>
+    <nombre>Luis</nombre>
+    <edad>29</edad>
+    <promedio>3</promedio>
+  </row>
+</data>
