@@ -1,55 +1,44 @@
 package model;
 
 public class Student {
-    private int id, age;
-    private String name, major;
+    private int id;
+    private String nombre; 
+    private int edad;      
+    private int codigoCarrera;
 
-    public Student(int id, String name, int age, String major) {
+    
+
+    public Student(int id, String nombre, int edad, int codigoCarrera) {
         this.id = id;
-        this.age = age;
-        this.name = name;
-        this.major = major;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.codigoCarrera = codigoCarrera;
     }
-
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public int getEdad() { return edad; }
+    public int getCodigoCarrera() { return codigoCarrera; }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
+    public void setCodigoCarrera(int codigoCarrera) {
+        this.codigoCarrera = codigoCarrera;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                ", major='" + major + '\'' +
-                '}';
+        return "Student [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", codigoCarrera=" + codigoCarrera + "]";
     }
+    
+    
 }

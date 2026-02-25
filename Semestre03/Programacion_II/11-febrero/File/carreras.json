@@ -1,0 +1,12 @@
+[
+  {
+    "codigoCarrera": 1,
+    "nombre": "Ingeniería de Sistemas",
+    "facultadID": 1
+  },
+  {
+    "codigoCarrera": 2,
+    "nombre": "Economia",
+    "facultadID": 2
+  }
+]

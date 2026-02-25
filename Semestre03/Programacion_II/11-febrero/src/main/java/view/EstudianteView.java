@@ -3,33 +3,28 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import controller.*;
-import model.*;
-
+import dao.GestionDAO;
+import model.Facultad;
+import model.Carrera;
+import model.Student;
 public class EstudianteView extends JFrame {
     private StudentController controller = new StudentController();
+    private GestionDAO gestion = new GestionDAO();
 
-    private JTextField txtId;
-    private JTextField txtNombre;
-    private JTextField txtEdad;
-    private JTextField txtCarrera;
-
+    private JTextField txtId, txtNombre, txtEdad;
     private JTable tabla;
     private DefaultTableModel modelo;
+    private JComboBox<Facultad> cbFacultad;
+    private JComboBox<Carrera> cbCarrera;
 
     public EstudianteView() {
         // --- Configuración de la Ventana ---
         setTitle("Estudiantes Programación 2 2026");
-        setSize(800, 500);
+        setSize(900, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -38,8 +33,10 @@ public class EstudianteView extends JFrame {
         txtId = new JTextField(5);
         txtNombre = new JTextField(10);
         txtEdad = new JTextField(3);
-        txtCarrera = new JTextField(10);
         
+        cbFacultad = new JComboBox<>();
+        cbCarrera = new JComboBox<>();
+
         JButton btnAgregar = new JButton("Agregar");
         btnAgregar.setBackground(Color.GREEN);
         
@@ -50,7 +47,7 @@ public class EstudianteView extends JFrame {
         btnEliminar.setBackground(Color.RED);
 
         JButton btnVer = new JButton("Ver");
-        btnVer.setBackground(Color.CYAN); // Cambiado a Cyan para que resalte
+        btnVer.setBackground(Color.CYAN);
 
         // Añadir componentes al panel
         panelForm.add(new JLabel("ID:"));
@@ -59,36 +56,52 @@ public class EstudianteView extends JFrame {
         panelForm.add(txtNombre);
         panelForm.add(new JLabel("Edad:"));
         panelForm.add(txtEdad);
+        panelForm.add(new JLabel("Facultad:"));
+        panelForm.add(cbFacultad);
         panelForm.add(new JLabel("Carrera:"));
-        panelForm.add(txtCarrera);
+        panelForm.add(cbCarrera);
+        
         panelForm.add(btnAgregar);
         panelForm.add(btnActualizar);
         panelForm.add(btnEliminar);
-        panelForm.add(btnVer); // ¡IMPORTANTE! Añadirlo al panel
+        panelForm.add(btnVer);
 
-        panelForm.setPreferredSize(new Dimension(600, 100));
+        panelForm.setPreferredSize(new Dimension(900, 100));
 
         // --- Configuración de Tabla ---
-        String[] columnas = {"ID", "Nombre", "Edad", "Carrera"};
+        String[] columnas = {"ID", "Nombre", "Edad", "Carrera ID"};
         modelo = new DefaultTableModel(columnas, 0);
         tabla = new JTable(modelo);
 
         add(panelForm, BorderLayout.NORTH);
         add(new JScrollPane(tabla), BorderLayout.CENTER);
 
-        // --- LISTENERS (Dentro del constructor) ---
+        // --- LÓGICA DE CARGA (COMBOBOX) ---
+        cargarFacultades();
+
+        cbFacultad.addActionListener(e -> {
+            actualizarComboCarreras();
+        });
+
+        // --- LISTENERS DE BOTONES ---
 
         btnAgregar.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(txtId.getText());
                 String nombre = txtNombre.getText();
                 int edad = Integer.parseInt(txtEdad.getText());
-                String carrera = txtCarrera.getText();
-                controller.crearEstudiante(id, nombre, edad, carrera);
+                Carrera carrera = (Carrera) cbCarrera.getSelectedItem();
+                
+                if (carrera == null) {
+                    JOptionPane.showMessageDialog(this, "Seleccione una carrera válida");
+                    return;
+                }
+
+                controller.crearEstudiante(id, nombre, edad, carrera.getCodigoCarrera());
                 actualizarTabla();
                 limpiar();
             } catch (NumberFormatException ex) {
-                System.out.println("Error: ID y Edad deben ser números.");
+                JOptionPane.showMessageDialog(this, "Error: ID y Edad deben ser números.");
             }
         });
 
@@ -97,12 +110,13 @@ public class EstudianteView extends JFrame {
                 int id = Integer.parseInt(txtId.getText());
                 String nombre = txtNombre.getText();
                 int edad = Integer.parseInt(txtEdad.getText());
-                String carrera = txtCarrera.getText();
-                controller.actualizarEstudiante(id, nombre, edad, carrera);
+                Carrera carrera = (Carrera) cbCarrera.getSelectedItem();
+                
+                controller.actualizarEstudiante(id, nombre, edad, carrera.getCodigoCarrera());
                 actualizarTabla();
                 limpiar();
-            } catch (NumberFormatException ex) {
-                System.out.println("Error en los datos de actualización.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al actualizar.");
             }
         });
 
@@ -116,45 +130,59 @@ public class EstudianteView extends JFrame {
             }
         });
 
-        // Evento para el botón Ver
         btnVer.addActionListener(e -> {
-            System.out.println("¡Funciona! Abriendo ventana Prueba...");
-            Prueba p = new Prueba();
-            p.setVisible(true);
+            System.out.println("Abriendo ventana de prueba...");
         });
 
-        tabla.getSelectionModel().addListSelectionListener(e -> {
-            int fila = tabla.getSelectedRow();
-            if (fila >= 0) {
-                txtId.setText(modelo.getValueAt(fila, 0).toString());
-                txtNombre.setText(modelo.getValueAt(fila, 1).toString());
-                txtEdad.setText(modelo.getValueAt(fila, 2).toString());
-                txtCarrera.setText(modelo.getValueAt(fila, 3).toString());
-            }
-        });
-
-        cargarDatosIniciales();
+        // Carga inicial de datos en tabla
+        cargarDatosPrueba();
         setVisible(true);
     }
 
-    // --- Métodos de apoyo ---
-    private void actualizarTabla() {
-        modelo.setRowCount(0);
-        for (Student e : controller.listarEstudiantes()) {
-            modelo.addRow(new Object[]{e.getId(), e.getName(), e.getAge(), e.getMajor()});
+    // --- MÉTODOS DE APOYO ---
+
+    private void cargarFacultades() {
+        cbFacultad.removeAllItems();
+        for (Facultad f : gestion.getFacultades())
+            cbFacultad.addItem(f);
+        }
+    
+
+private void actualizarComboCarreras() {
+    cbCarrera.removeAllItems();
+    Facultad seleccionada = (Facultad) cbFacultad.getSelectedItem();
+    if (seleccionada != null && seleccionada.getCarreras() != null) {
+        for (Carrera c : seleccionada.getCarreras()) {
+            cbCarrera.addItem(c);
         }
     }
+}
+
+   private void actualizarTabla() {
+    modelo.setRowCount(0);
+    for (Student e : controller.listarEstudiantes()) {
+        // Opcional: obtener el nombre de la carrera mediante el ID
+        Carrera c = gestion.getCarreraPorCodigo(e.getCodigoCarrera());
+        String nombreCarrera = (c != null) ? c.getNombre() : "No asignada";
+
+        modelo.addRow(new Object[]{
+            e.getId(), 
+            e.getNombre(), 
+            e.getEdad(), 
+            nombreCarrera // Se ve mucho mejor el nombre que el número
+        });
+    }
+}
 
     private void limpiar() {
         txtId.setText("");
         txtNombre.setText("");
         txtEdad.setText("");
-        txtCarrera.setText("");
     }
 
-    private void cargarDatosIniciales() {
-        controller.crearEstudiante(1, "Jorge", 31, "Ingenieria");
-        controller.crearEstudiante(2, "Alejandra", 30, "Diseño");
+    private void cargarDatosPrueba() {
+        controller.crearEstudiante(1, "Jorge", 31, 2);
+        controller.crearEstudiante(2, "Alejandra", 30, 1);
         actualizarTabla();
     }
 }

@@ -8,7 +8,7 @@ import model.Student;
 public class StudentController {
     private StudentDao dao = new StudentDao();
 
-    public void crearEstudiante(int id, String nombre, int edad, String carrera) {
+    public void crearEstudiante(int id, String nombre, int edad, int carrera) {
         dao.create(new Student(id, nombre, edad, carrera));
     }
 
@@ -16,7 +16,7 @@ public class StudentController {
         return dao.list();
     }
 
-    public void actualizarEstudiante(int id, String nombre, int edad, String carrera) {
+    public void actualizarEstudiante(int id, String nombre, int edad, int carrera) {
         dao.update(new Student(id, nombre, edad, carrera));
     }
 
