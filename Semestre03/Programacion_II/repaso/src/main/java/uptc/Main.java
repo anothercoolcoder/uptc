@@ -5,7 +5,6 @@ import uptc.view.VideoJuegoView;
 public class Main {
     public static void main(String[] args) {
         VideoJuegoView videoJuegoView = new VideoJuegoView();
-        videoJuegoView.createVideoGame();
-        videoJuegoView.list();
+        videoJuegoView.setVisible(true);
     }
 }

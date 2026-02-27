@@ -40,5 +40,54 @@
     "titulo": "Halo",
     "categoria": "Shooter",
     "precio": 40000.0
+  },
+  {
+    "id": 1,
+    "stock": 12,
+    "titulo": "Mewgenics",
+    "categoria": "Roguelite",
+    "precio": 54000.0
+  },
+  {
+    "id": 2,
+    "stock": 15,
+    "titulo": "Hades",
+    "categoria": "Roguelite",
+    "precio": 20000.0
+  },
+  {
+    "id": 3,
+    "stock": 53,
+    "titulo": "Halo",
+    "categoria": "Shooter",
+    "precio": 40000.0
+  },
+  {
+    "id": 123,
+    "stock": 1234,
+    "titulo": "qwerty",
+    "categoria": "FPS",
+    "precio": 13000.0
+  },
+  {
+    "id": 1,
+    "stock": 12,
+    "titulo": "Mewgenics",
+    "categoria": "Roguelite",
+    "precio": 54000.0
+  },
+  {
+    "id": 2,
+    "stock": 15,
+    "titulo": "Hades",
+    "categoria": "Roguelite",
+    "precio": 20000.0
+  },
+  {
+    "id": 3,
+    "stock": 53,
+    "titulo": "Halo",
+    "categoria": "Shooter",
+    "precio": 40000.0
   }
 ]
