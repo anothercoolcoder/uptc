@@ -238,5 +238,17 @@
     "nombre": "Alejandra",
     "edad": 30,
     "codigoCarrera": 1
+  },
+  {
+    "id": 1,
+    "nombre": "Jorge",
+    "edad": 31,
+    "codigoCarrera": 2
+  },
+  {
+    "id": 2,
+    "nombre": "Alejandra",
+    "edad": 30,
+    "codigoCarrera": 1
   }
 ]

@@ -1,20 +1,24 @@
 package model;
 
 public class RoomModel {
-    boolean status;
-    int id;
-
-    public RoomModel(boolean status, int id) {
-        this.status = status;
+    public String nombreHuesped;
+    public int id;
+    public double CuentaModel;
+    
+    public RoomModel(int id, String nombreHuesped) {
+        this.nombreHuesped = nombreHuesped;
         this.id = id;
     }
 
-    public boolean isStatus() {
-        return status;
+    public RoomModel() {
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public String getNombreHuesped() {
+        return nombreHuesped;
+    }
+
+    public void setNombreHuesped(String nombreHuesped) {
+        this.nombreHuesped = nombreHuesped;
     }
 
     public int getId() {
@@ -25,11 +29,14 @@ public class RoomModel {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "roomModel{" +
-                "status=" + status +
-                ", id='" + id + '\'' +
-                '}';
+    public double getCuentaModel() {
+        return CuentaModel;
     }
+
+    public void setCuentaModel(double cuentaModel) {
+        CuentaModel = cuentaModel;
+    }
+
+    
+    
 }

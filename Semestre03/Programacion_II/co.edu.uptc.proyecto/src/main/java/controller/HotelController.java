@@ -1,26 +1,24 @@
 package controller;
 
+import model.RoomModel;
+
 import java.util.List;
 
 import dao.HotelDao;
-import model.RoomModel;
 
 public class HotelController {
     private HotelDao dao = new HotelDao();
 
-    public void createRoom(boolean status, int id) {
-        dao.create(new RoomModel(status, id));
+    public void createRoom(int id, String nombreHuesped){
+        dao.create(new RoomModel(id, nombreHuesped));
     }
-
-    public List<RoomModel> listarHabitaciones() {
-        return dao.list();
+    public List<RoomModel> listRoomModels(){
+        return dao.listRoomModels();
     }
-
-    public void updateRoom(boolean status, int id) {
-        dao.update(new RoomModel(status, id));
+    public void updateRoomModel(int id, String nombreHuesped){
+        dao.updateRoomModel(new RoomModel(id,nombreHuesped));
     }
-
-    public void eliminarEstudiante(int id) {
-        dao.remove(id);
+    public void delete(int id){
+        dao.delete(id);
     }
 }

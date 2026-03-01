@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "nombre": "Gaseosa",
+    "precio": 2000.0
+  },
+  {
+    "id": 2,
+    "nombre": "Papas",
+    "precio": 3000.0
+  },
+  {
+    "id": 3,
+    "nombre": "Chocoramo",
+    "precio": 4000.0
+  },
+  {
+    "id": 4,
+    "nombre": "A",
+    "precio": 2000.0
+  },
+  {
+    "id": 5,
+    "nombre": "Chicle",
+    "precio": 1000.0
+  }
+]

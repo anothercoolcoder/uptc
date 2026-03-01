@@ -12,18 +12,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import controller.HotelController;
-import model.RoomModel;
+import controller.PreciosController;
+import model.PrecioModel;
 
-public class HotelView extends JFrame {
-    private HotelController HotelController = new HotelController();
+public class PrecioView extends JFrame {
+    private PreciosController preciosController = new PreciosController();
 
-    private JTextField txtId, txtNombre,txtCuenta,txtPrecio;
+    private JTextField txtId, txtNombre,txtPrecio;
     private JTable tabla;
     private DefaultTableModel modelo;
 
-    public HotelView(){
-        setTitle(("Hotel de Andres Niño"));
+    public PrecioView(){
+        setTitle(("Gestor de precios"));
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -31,11 +31,10 @@ public class HotelView extends JFrame {
         JPanel panelForm = new JPanel();
         txtId = new JTextField(5);
         txtNombre = new JTextField(20);
-        txtCuenta = new JTextField(20);
-        txtPrecio = new JTextField(10);
+        txtPrecio = new JTextField(20);
 
         JButton btnAgregar = new JButton("Agregar");
-        JButton btnPrecios = new JButton("Gestor de precios");
+        JButton btnVolver = new JButton("Volver");
 
         panelForm.add(new JLabel("ID"));
         panelForm.add(txtId);
@@ -43,17 +42,14 @@ public class HotelView extends JFrame {
         panelForm.add(new JLabel("Nombre"));
         panelForm.add(txtNombre);
 
-        panelForm.add(new JLabel("Cuenta"));
-        panelForm.add(txtCuenta);
-
         panelForm.add(new JLabel("Precio"));
         panelForm.add(txtPrecio);
 
         panelForm.add(btnAgregar);
-        panelForm.add(btnPrecios);
+        panelForm.add(btnVolver);
 
         panelForm.setPreferredSize(new Dimension(600,80));
-        String[] columnas = {"Id", "Nombre","Cuenta","Precio"};
+        String[] columnas = {"Id", "Nombre","Precio"};
         modelo = new DefaultTableModel(columnas,0);
         tabla = new JTable(modelo);
 
@@ -63,23 +59,22 @@ public class HotelView extends JFrame {
         btnAgregar.addActionListener(e -> {
             int id = Integer.parseInt(txtId.getText());
             String nombre = txtNombre.getText();
-            HotelController.createRoom(id, nombre);
+            double precio = Double.parseDouble(txtPrecio.getText());
+            preciosController.createPrecio(id, nombre,precio);
             actualizarTabla();
             limpiar();
         });
-        
-        cargarDatosIniciales();
+            cargarDatosIniciales();
 
-        btnPrecios.addActionListener(e -> {
-            PrecioView precioView = new PrecioView();
-            precioView.setVisible(true);
+        btnVolver.addActionListener(e -> {
+            setVisible(false);
         });
     }
 
         private void actualizarTabla(){
             modelo.setRowCount(0);
-            for(RoomModel e : HotelController.listRoomModels()) {
-                modelo.addRow(new Object[]{e.getId(),e.getNombreHuesped()
+            for(PrecioModel e : preciosController.listPrecioModels()) {
+                modelo.addRow(new Object[]{e.getId(),e.getNombre(),e.getPrecio()
                 });
             }
         }
@@ -88,9 +83,10 @@ public class HotelView extends JFrame {
             txtNombre.setText("");
         }
         private void cargarDatosIniciales(){
-            
-            HotelController.createRoom(1, "Andres");
-            HotelController.createRoom(2, "Roberto");
+            preciosController.createPrecio(1, "Gaseosa", 2000.0);
+            preciosController.createPrecio(2, "Papas", 3000.0);
+            preciosController.createPrecio(3, "Chocoramo", 4000.0);
+
             actualizarTabla();
         }
     }

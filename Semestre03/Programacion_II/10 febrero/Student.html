@@ -52,14 +52,21 @@
         <tbody id="cuerpo-tabla">
             </tbody>
     </table>
-
+     <div>
+        <canvas id="myChart"></canvas>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const URL_BASE = "http://127.0.0.1:5000";
 
         async function obtenerInfo() {
+            nombres = []
+            edades = []
             try {
                 const respuesta = await fetch(`${URL_BASE}/listarEstudiantes`);
                 const datos = await respuesta.json();
+                nombres = datos.map(estudiante => estudiante.nombre);
+                edades = datos.map(estudiante => estudiante.edad);
                 const cuerpoTabla = document.getElementById("cuerpo-tabla");
                 cuerpoTabla.innerHTML = "";
 
@@ -80,8 +87,29 @@
             } catch (error) {
                 console.error("Error al obtener datos:", error);
             }
+            const ctx = document.getElementById("myChart");
+             new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: nombres,
+            datasets: [{
+                label: 'Edades de los estudiantes',
+                data: edades,
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
         }
 
+       
         async function agregarEstudiante() {
             const estudiante = {
                 nombre: document.getElementById("nombre").value,
