@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PreciosController;
-import model.PrecioModel;
+import model.PrecioUnitarioModel;
 
 public class PrecioView extends JFrame {
     private PreciosController preciosController = new PreciosController();
@@ -21,7 +21,7 @@ public class PrecioView extends JFrame {
     private JTextField txtId, txtNombre,txtPrecio;
     private JTable tabla;
     private DefaultTableModel modelo;
-
+// jpanel
     public PrecioView(){
         setTitle(("Gestor de precios"));
         setSize(600, 400);
@@ -64,7 +64,10 @@ public class PrecioView extends JFrame {
             actualizarTabla();
             limpiar();
         });
+        if (preciosController.listPrecioModels().isEmpty()) {
             cargarDatosIniciales();
+        }
+        actualizarTabla();
 
         btnVolver.addActionListener(e -> {
             setVisible(false);
@@ -73,7 +76,7 @@ public class PrecioView extends JFrame {
 
         private void actualizarTabla(){
             modelo.setRowCount(0);
-            for(PrecioModel e : preciosController.listPrecioModels()) {
+            for(PrecioUnitarioModel e : preciosController.listPrecioModels()) {
                 modelo.addRow(new Object[]{e.getId(),e.getNombre(),e.getPrecio()
                 });
             }

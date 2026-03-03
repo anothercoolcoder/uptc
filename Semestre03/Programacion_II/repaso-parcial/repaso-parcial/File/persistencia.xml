@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mundo>
+    <pais id="57">
+        <nombre>Colombia</nombre>
+        <departamentos>
+            <departamento>Amazonas</departamento>
+            <departamento>Antioquia</departamento>
+            <departamento>Arauca</departamento>
+            <departamento>Atlántico</departamento>
+            <departamento>Bolívar</departamento>
+            <departamento>Boyacá</departamento>
+            <departamento>Caldas</departamento>
+            <departamento>Caquetá</departamento>
+            <departamento>Casanare</departamento>
+            <departamento>Cauca</departamento>
+            <departamento>Cesar</departamento>
+            <departamento>Chocó</departamento>
+            <departamento>Córdoba</departamento>
+            <departamento>Cundinamarca</departamento>
+            <departamento>Guainía</departamento>
+            <departamento>Guaviare</departamento>
+            <departamento>Huila</departamento>
+            <departamento>La Guajira</departamento>
+            <departamento>Magdalena</departamento>
+            <departamento>Meta</departamento>
+            <departamento>Nariño</departamento>
+            <departamento>Norte de Santander</departamento>
+            <departamento>Putumayo</departamento>
+            <departamento>Quindío</departamento>
+            <departamento>Risaralda</departamento>
+            <departamento>San Andrés y Providencia</departamento>
+            <departamento>Santander</departamento>
+            <departamento>Sucre</departamento>
+            <departamento>Tolima</departamento>
+            <departamento>Valle del Cauca</departamento>
+            <departamento>Vaupés</departamento>
+            <departamento>Vichada</departamento>
+        </departamentos>
+    </pais>
+</mundo>

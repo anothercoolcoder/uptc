@@ -1,15 +1,15 @@
 package model;
 
-public class PrecioModel {
+public class PrecioUnitarioModel {
     public int id;
     public String nombre;
     public double precio;
-    public PrecioModel(int id, String nombre, double precio) {
+    public PrecioUnitarioModel(int id, String nombre, double precio) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
-    public PrecioModel() {
+    public PrecioUnitarioModel() {
     }
     public int getId() {
         return id;

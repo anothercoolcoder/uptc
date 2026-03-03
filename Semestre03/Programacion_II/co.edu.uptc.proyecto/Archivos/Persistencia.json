@@ -10,13 +10,8 @@
     "CuentaModel": 0.0
   },
   {
-    "nombreHuesped": "Juan",
-    "id": 3,
-    "CuentaModel": 0.0
-  },
-  {
     "nombreHuesped": "Andres",
-    "id": 4,
+    "id": 3,
     "CuentaModel": 0.0
   }
 ]

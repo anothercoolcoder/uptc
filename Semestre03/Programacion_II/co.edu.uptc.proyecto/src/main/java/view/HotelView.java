@@ -59,6 +59,13 @@ public class HotelView extends JFrame {
 
         add(panelForm, BorderLayout.NORTH);
         add(new JScrollPane(tabla),BorderLayout.CENTER);
+        
+        if (HotelController.listRoomModels().isEmpty()) {
+            cargarDatosIniciales();
+        }else{
+            System.out.println("La lista no esta vacia, entonces no necesito cargar datos iniciales para los huspedes");
+        }
+        actualizarTabla();
 
         btnAgregar.addActionListener(e -> {
             int id = Integer.parseInt(txtId.getText());
@@ -67,13 +74,22 @@ public class HotelView extends JFrame {
             actualizarTabla();
             limpiar();
         });
-        
-        cargarDatosIniciales();
 
+        
         btnPrecios.addActionListener(e -> {
             PrecioView precioView = new PrecioView();
             precioView.setVisible(true);
         });
+
+        tabla.getSelectionModel().addListSelectionListener(
+            e -> {
+                int fila = tabla.getSelectedRow();
+            if(fila>= 0){
+                txtId.setText(modelo.getValueAt(fila, 0).toString());
+                txtNombre.setText(modelo.getValueAt(fila, 1).toString());
+            }}
+        );
+
     }
 
         private void actualizarTabla(){
@@ -88,7 +104,6 @@ public class HotelView extends JFrame {
             txtNombre.setText("");
         }
         private void cargarDatosIniciales(){
-            
             HotelController.createRoom(1, "Andres");
             HotelController.createRoom(2, "Roberto");
             actualizarTabla();

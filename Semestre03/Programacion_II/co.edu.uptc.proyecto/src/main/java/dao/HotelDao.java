@@ -42,6 +42,8 @@ public class HotelDao {
         writeFile(roomModels);
     }
 
+    // swing selection input
+
     public List<RoomModel> listRoomModels(){
         return readFile();
     }

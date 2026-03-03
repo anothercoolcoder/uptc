@@ -3,5 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class CuentaModel {
-    public ArrayList<ProductoModel> compras = new ArrayList<>();
+    double valorTotal;
+
+    public CuentaModel(ArrayList<DetalleCompraModel> detalleCompraModels) {
+        this.valorTotal = detalleCompraModels.stream().mapToDouble(e -> e.getValorFinal()).sum();
+    }
+     
 }
