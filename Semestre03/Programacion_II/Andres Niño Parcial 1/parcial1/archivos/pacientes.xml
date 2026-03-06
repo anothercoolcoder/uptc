@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pacientes>
+
+    <paciente>
+        <id>1</id>
+        <nombre>Carlos Ramirez</nombre>
+        <edad>65</edad>
+        <genero>M</genero>
+        <enfermedad>Hipertension</enfermedad>
+        <ciudad>Bogota</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>2</id>
+        <nombre>Laura Martinez</nombre>
+        <edad>45</edad>
+        <genero>F</genero>
+        <enfermedad>Diabetes</enfermedad>
+        <ciudad>Tunja</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>3</id>
+        <nombre>Andres Torres</nombre>
+        <edad>33</edad>
+        <genero>M</genero>
+        <enfermedad>Asma</enfermedad>
+        <ciudad>Medellin</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>4</id>
+        <nombre>Paula Gomez</nombre>
+        <edad>52</edad>
+        <genero>F</genero>
+        <enfermedad>Hipertension</enfermedad>
+        <ciudad>Cali</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>5</id>
+        <nombre>Jorge Mendoza</nombre>
+        <edad>72</edad>
+        <genero>M</genero>
+        <enfermedad>Diabetes</enfermedad>
+        <ciudad>Bogota</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>6</id>
+        <nombre>Natalia Ruiz</nombre>
+        <edad>29</edad>
+        <genero>F</genero>
+        <enfermedad>Migraña</enfermedad>
+        <ciudad>Bucaramanga</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>7</id>
+        <nombre>Luis Perez</nombre>
+        <edad>55</edad>
+        <genero>M</genero>
+        <enfermedad>Hipertension</enfermedad>
+        <ciudad>Tunja</ciudad>
+    </paciente>
+
+    <paciente>
+        <id>8</id>
+        <nombre>Camila Vargas</nombre>
+        <edad>41</edad>
+        <genero>F</genero>
+        <enfermedad>Diabetes</enfermedad>
+        <ciudad>Bogota</ciudad>
+    </paciente>
+
+</pacientes>

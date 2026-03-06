@@ -1,0 +1,52 @@
+{
+  "historiales": [
+    {
+      "idPaciente": 1,
+      "peso": 82,
+      "altura": 1.72,
+      "fumador": true
+    },
+    {
+      "idPaciente": 2,
+      "peso": 68,
+      "altura": 1.60,
+      "fumador": false
+    },
+    {
+      "idPaciente": 3,
+      "peso": 75,
+      "altura": 1.75,
+      "fumador": false
+    },
+    {
+      "idPaciente": 4,
+      "peso": 70,
+      "altura": 1.65,
+      "fumador": false
+    },
+    {
+      "idPaciente": 5,
+      "peso": 90,
+      "altura": 1.70,
+      "fumador": true
+    },
+    {
+      "idPaciente": 6,
+      "peso": 60,
+      "altura": 1.63,
+      "fumador": false
+    },
+    {
+      "idPaciente": 7,
+      "peso": 85,
+      "altura": 1.74,
+      "fumador": true
+    },
+    {
+      "idPaciente": 8,
+      "peso": 72,
+      "altura": 1.68,
+      "fumador": false
+    }
+  ]
+}
