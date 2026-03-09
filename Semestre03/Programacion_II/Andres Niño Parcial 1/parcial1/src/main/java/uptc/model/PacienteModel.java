@@ -9,15 +9,6 @@ public class PacienteModel {
     String ciudad;
     HistorialMedicoModel hIstorialMedicoModel;
 
-    
-    public PacienteModel(int id, String nombre, int edad, String genero, String enfermedad, String ciudad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.edad = edad;
-        this.genero = genero;
-        this.enfermedad = enfermedad;
-        this.ciudad = ciudad;
-    }
     public PacienteModel(int id, String nombre, int edad, String genero, String enfermedad, String ciudad,
             HistorialMedicoModel hIstorialMedicoModel) {
         this.id = id;

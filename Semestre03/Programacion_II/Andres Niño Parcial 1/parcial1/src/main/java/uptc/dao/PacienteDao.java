@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 public class PacienteDao {
     private String rutaArchivo;
-    HistorialMedicoDao historialMedicoDao;
+    HistorialMedicoDao historialMedicoDao = new HistorialMedicoDao();
 
     public PacienteDao(String ruta){
         this.rutaArchivo = ruta;
@@ -40,14 +40,17 @@ public class PacienteDao {
         }
     }
     private PacienteModel mapearAPacienteModel(Element e) {
-    int id = Integer.parseInt(e.getElementsByTagName("id").item(0).getTextContent());
-    String nombre = e.getElementsByTagName("nombre").item(0).getTextContent();
-    int edad = Integer.parseInt(e.getElementsByTagName("edad").item(0).getTextContent());
-    String genero = e.getElementsByTagName("genero").item(0).getTextContent();
-    String enfermedad = e.getElementsByTagName("enfermedad").item(0).getTextContent();
-    String ciudad = e.getElementsByTagName("ciudad").item(0).getTextContent();
+        int id = Integer.parseInt(e.getElementsByTagName("id").item(0).getTextContent());
+        String nombre = e.getElementsByTagName("nombre").item(0).getTextContent();
+        int edad = Integer.parseInt(e.getElementsByTagName("edad").item(0).getTextContent());
+        String genero = e.getElementsByTagName("genero").item(0).getTextContent();
+        String enfermedad = e.getElementsByTagName("enfermedad").item(0).getTextContent();
+        String ciudad = e.getElementsByTagName("ciudad").item(0).getTextContent();
+    return new PacienteModel(id, nombre, edad, genero, enfermedad, ciudad, traerInformacionJson(id));        
+    }
 
-    return new PacienteModel(id, nombre, edad, genero, enfermedad, ciudad);        
-}
+    public HistorialMedicoModel traerInformacionJson(int id){
+        return historialMedicoDao.readFile().stream().filter(e -> e.getIdPaciente() == id).findFirst().orElse(null);
+    }
 
 }
