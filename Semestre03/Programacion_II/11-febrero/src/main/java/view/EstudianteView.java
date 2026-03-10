@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.*;
 import dao.GestionDAO;
+import dao.UsuariosDao;
 import model.Facultad;
 import model.Carrera;
 import model.Student;

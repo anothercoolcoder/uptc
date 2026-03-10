@@ -1,7 +1,8 @@
+import dao.UsuariosDao;
 import view.*;
 public class Main {
-  public static void main(String[] args) {
-	EstudianteView estudianteView = new EstudianteView();
-	estudianteView.setVisible(true);
+  public static void main(String[] args) {	
+	  LoginView lg = new LoginView();
+	  lg.setVisible(true);
 	}
 }
