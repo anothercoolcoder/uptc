@@ -1,8 +1,12 @@
-import dao.UsuariosDao;
 import view.*;
+import gui.*;
+import data.*;
+import dao.*;
+
 public class Main {
-  public static void main(String[] args) {	
-	  LoginView lg = new LoginView();
-	  lg.setVisible(true);
-	}
+      public static void main(String[] args) {
+            Data.cargar();
+            PrincipalWindow principal = new PrincipalWindow();
+            principal.main();
+      }
 }

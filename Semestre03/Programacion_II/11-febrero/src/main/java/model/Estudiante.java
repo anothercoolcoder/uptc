@@ -1,12 +1,12 @@
 package model;
 
-public class Student {
+public class Estudiante {
     private int id;
     private String nombre; 
     private int edad;      
     private int codigoCarrera;
 
-    public Student(int id, String nombre, int edad, int codigoCarrera) {
+    public Estudiante(int id, String nombre, int edad, int codigoCarrera) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;

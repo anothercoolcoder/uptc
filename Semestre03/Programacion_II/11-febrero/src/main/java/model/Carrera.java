@@ -5,7 +5,11 @@ import java.util.ArrayList;
 public class Carrera {
     private int codigoCarrera, facultadID;
     private String nombre;
-    private List<Student> Estudiantes = new ArrayList<>();
+    private List<Estudiante> Estudiantes = new ArrayList<>();
+    
+    public Carrera() {
+        this.Estudiantes = new ArrayList<>();
+    }
     public int getCodigoCarrera() {
         return codigoCarrera;
     }
@@ -24,19 +28,19 @@ public class Carrera {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public List<Student> getEstudiantes() {
+    public List<Estudiante> getEstudiantes() {
         return Estudiantes;
     }
-    public void setEstudiantes(List<Student> estudiantes) {
+    public void setEstudiantes(List<Estudiante> estudiantes) {
         Estudiantes = estudiantes;
     }
-    public Carrera(int codigoCarrera, int facultadID, String nombre, List<Student> estudiantes) {
+    public Carrera(int codigoCarrera, int facultadID, String nombre, List<Estudiante> estudiantes) {
         this.codigoCarrera = codigoCarrera;
         this.facultadID = facultadID;
         this.nombre = nombre;
         Estudiantes = estudiantes;
     }
-    void agregarEstudiante (Student e){
+    void agregarEstudiante (Estudiante e){
         Estudiantes.add(e);
     } 
     @Override

@@ -1,23 +1,30 @@
 package dao;
-
-import java.io.FileInputStream;
 import java.util.Properties;
+import config.ConnectionRedis;
+import redis.clients.jedis.Jedis;
 
-public class UsuariosDao {
-    Properties pr = new Properties();
-
-    public UsuariosDao(){
-        try{
-            pr.load(new FileInputStream("File/usuarios.properties"));
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+public class UsuariosDao{
+    Properties props = ConnectionRedis.cargar();
+    private Jedis jedis;
+    private String host;
+    private int port;
+    private String password;
+    public UsuariosDao() {
+    host = props.getProperty("redis.host");
+    port =
+    Integer.parseInt(props.getProperty("redis.port"));
+    password = props.getProperty("redis.password");
+    jedis = new Jedis(host, port);
+    jedis.auth(password);
     }
-    public boolean validarUsuario(String usuario, String password){
-        String clave = pr.getProperty(usuario);
-        if (clave != null && clave.equals(password)) {
-            return true;
-        }
-        return false;
+    public boolean validarUsuario(String usuario,String password)
+    {
+
+    String clave = jedis.hget("usuarios", usuario);
+    System.out.println(clave);
+    if(clave !=null && clave.equals(password)) {
+    return true;
+    }
+    return false;
     }
 }

@@ -1,12 +1,11 @@
-dao\StudentDao$1.class
-Ejecucion.class
 model\Facultad.class
-view\Prueba.class
-model\Student.class
 dao\GestionDAO.class
 dao\GestionDAO$2.class
-dao\StudentDao.class
 model\Carrera.class
 dao\GestionDAO$1.class
 controller\StudentController.class
+dao\StudentDao$1.class
+view\Prueba.class
+model\Student.class
+dao\StudentDao.class
 view\EstudianteView.class

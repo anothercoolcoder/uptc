@@ -1,103 +1,82 @@
 package dao;
 
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
-import model.Carrera;
-import model.Facultad;
 import java.util.List;
 import java.util.Map;
 import java.io.FileReader;
 
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import model.*;
 
-public class GestionDAO {
-	 private List<Facultad> facultades = new ArrayList<>();
-	    private List<Carrera> carreras = new ArrayList<>();
+public class GestionDao {
+    private List<Facultad> facultades = new ArrayList<>();
+    private List<Carrera> carreras = new ArrayList<>();
 
+    public GestionDao() {
+        cargarFacultades();
+        cargarCarreras();
+        enlazarFacultadesCarreras();
+    }
 
-	    public GestionDAO() {
-	        cargarFacultades();
-	        cargarCarreras();
-	        enlazarFacultadesCarreras();
-	    }
+    private void cargarFacultades() {
+        try {
+            Type t = new TypeToken<List<Facultad>>() {
+            }.getType();
+            facultades = new Gson().fromJson(new FileReader("File/facultades.json"), t);
+        } catch (Exception e) {
+            facultades = new ArrayList<>();
+        }
+    }
 
-
-	    private void cargarFacultades() {
+    private void cargarCarreras() {
     try {
-        Type t = new TypeToken<List<Facultad>>(){}.getType();
-        // Asegúrate de que la ruta "Archivos/facultades.json" sea la correcta
-        List<Facultad> listaCargada = new Gson().fromJson(new FileReader("File/facultades.json"), t);
-        this.facultades = (listaCargada != null) ? listaCargada : new ArrayList<>();
+        Type t = new TypeToken<List<Carrera>>() {}.getType();
+        java.io.File archivo = new java.io.File("File/carreras.json");
+        
+        if (!archivo.exists()) {
+            System.err.println("ERROR: No se encuentra el archivo en: " + archivo.getAbsolutePath());
+            return;
+        }
+        
+        carreras = new Gson().fromJson(new java.io.FileReader(archivo), t);
+        System.out.println("Carreras leídas: " + (carreras != null ? carreras.size() : "null"));
+        
     } catch (Exception e) {
-        this.facultades = new ArrayList<>();
+        System.err.println("ERROR crítico al procesar el JSON:");
         e.printStackTrace();
     }
 }
 
-private void cargarCarreras() {
-    try {
-        // Usamos la misma carpeta que en facultades para ser consistentes
-        java.io.File archivo = new java.io.File("File/carreras.json");
-        
-        if (!archivo.exists()) {
-            System.out.println("El archivo carreras.json no existe en la carpeta File/");
-            this.carreras = new ArrayList<>();
-            return;
+    private void enlazarFacultadesCarreras() {
+        Map<Integer, Facultad> map = new HashMap<>();
+        for (Facultad f : facultades) {
+            map.put(f.getId(), f);
         }
-
-        Type t = new TypeToken<List<Carrera>>(){}.getType();
-        List<Carrera> listaCargada = new Gson().fromJson(new FileReader(archivo), t);
-        
-        this.carreras = (listaCargada != null) ? listaCargada : new ArrayList<>();
-        System.out.println("Carreras cargadas con éxito: " + carreras.size());
-        
-    } catch (Exception e) {
-        System.err.println("Error al cargar carreras: " + e.getMessage());
-        this.carreras = new ArrayList<>();
-    }
-}
-
-
-	    private void enlazarFacultadesCarreras() {
-    Map<Integer, Facultad> mapaFacultades = new HashMap<>();
-    for (Facultad f : facultades) {
-        f.setCarreras(new ArrayList<>()); 
-        mapaFacultades.put(f.getId(), f);
-    }
-
-    for (Carrera c : carreras) {
-        Facultad f = mapaFacultades.get(c.getFacultadID());
-        if (f != null) {
-            f.agregarCarrera(c); 
+        for (Carrera c : carreras) {
+            Facultad f = map.get(c.getFacultadID());
+            if (f != null) {
+                f.agregarCarrera(c);
+            }
         }
     }
-}
 
+    public List<Facultad> getFacultades() {
+        return facultades;
+    }
 
-	    public List<Facultad> getFacultades() {
-	        return facultades;
-	    }
+    public List<Carrera> getCarrerasPorFacultad(Facultad f) {
+        return f.getCarreras();
+    }
 
-        public List<Facultad> getElements(){
-            return facultades;
-        }
+    public Carrera getCarreraPorCodigo(int codigo) {
+        return carreras.stream()
+                .filter(c -> c.getCodigoCarrera() == codigo)
 
-	    public List<Carrera> getCarrerasPorFacultad(Facultad f) {
-	        return f.getCarreras();
-	    }
-
-
-	    public Carrera getCarreraPorCodigo(int codigo) {
-	        return carreras.stream()
-	                .filter(c -> c.getCodigoCarrera() == codigo)
-	                .findFirst()
-	                .orElse(null);
-	    }
+                .findFirst()
+                .orElse(null);
+    }
 }
