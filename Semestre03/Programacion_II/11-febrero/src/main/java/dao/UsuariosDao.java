@@ -3,13 +3,13 @@ import java.util.Properties;
 import config.ConnectionRedis;
 import redis.clients.jedis.Jedis;
 
-public class UsuariosDao{
+public class UsuariosDAO{
     Properties props = ConnectionRedis.cargar();
-    private Jedis jedis;
-    private String host;
-    private int port;
-    private String password;
-    public UsuariosDao() {
+    public Jedis jedis;
+    public String host;
+    public int port;
+    public String password;
+    public UsuariosDAO() {
     host = props.getProperty("redis.host");
     port =
     Integer.parseInt(props.getProperty("redis.port"));

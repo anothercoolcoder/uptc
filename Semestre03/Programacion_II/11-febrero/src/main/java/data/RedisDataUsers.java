@@ -5,8 +5,8 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.Set;
 
-public class Data {
-    public static void cargar(){
+public class RedisDataUsers {
+    public void cargar(){
     try{
         Properties props = new Properties();
         FileInputStream fis = new FileInputStream("File/usuarios.properties");

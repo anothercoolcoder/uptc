@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import dao.UsuariosDao;
+import dao.UsuariosDAO;
 import view.EstudianteView;
 
 public class login extends JFrame {
@@ -54,7 +54,7 @@ public class login extends JFrame {
             String user = txtUsuario.getText();
             String password = new String(txtPassword.getPassword());
 
-            UsuariosDao us = new UsuariosDao();
+            UsuariosDAO us = new UsuariosDAO();
 
             if (us.validarUsuario(user, password)) {
 
