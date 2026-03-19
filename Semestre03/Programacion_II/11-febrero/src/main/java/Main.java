@@ -1,5 +1,6 @@
 import view.*;
 import gui.*;
+import model.Estudiante;
 import data.*;
 import dao.*;
 
@@ -10,7 +11,8 @@ public class Main {
       UsuariosDAO us = new UsuariosDAO();
       EstudiantesDAOMySQL esm = new EstudiantesDAOMySQL();
       System.out.println(esm.listar());
-
+      esm.eliminar(21);
+      System.out.println(esm.listar());
       System.out.println(us.validarUsuario("jorge", "jorgeUPTC"));
       System.out.println(us.validarUsuario("jorge", "asdsadas"));
       PrincipalWindow pw = new PrincipalWindow();
