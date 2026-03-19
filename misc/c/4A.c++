@@ -3,13 +3,13 @@ using namespace std;
 int main(){
     int a,b;
     cin >> a;
-    b = a / 2;
-     
-    if (b % 2 == 0)
+    if(a > 2 && a % 2 == 0 )
     {
         cout << "YES";
-    }else{
-        cout <<"NO";
     }
-    
+    else
+    {
+        cout << "NO";
+    }
+    return 0;
 }
