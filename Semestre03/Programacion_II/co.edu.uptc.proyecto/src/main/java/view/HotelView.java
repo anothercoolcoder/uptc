@@ -1,111 +1,147 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import controller.HotelController;
-import model.RoomModel;
+import java.awt.*;
 
 public class HotelView extends JFrame {
-    private HotelController HotelController = new HotelController();
 
-    private JTextField txtId, txtNombre,txtCuenta,txtPrecio;
-    private JTable tabla;
-    private DefaultTableModel modelo;
+    public JTextField txtId = new JTextField(10);
+    public JTextField txtNombre = new JTextField(10);
+    public JTextField txtPrecio = new JTextField(10);
+    public JTable tabla;
+    public DefaultTableModel modelo;
+    public JButton btnGuardar = new JButton("Guardar");
 
-    public HotelView(){
-        setTitle(("Hotel de Andres Niño"));
-        setSize(600, 400);
+    // 🎨 Colores suaves
+    private final Color FONDO = new Color(245, 247, 250);
+    private final Color AZUL = new Color(52, 152, 219);
+    private final Color VERDE = new Color(46, 204, 113);
+    private final Color ROJO = new Color(231, 76, 60);
+
+    public HotelView() {
+        setTitle("Sistema Hotelero");
+        setSize(750, 420);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(FONDO);
+        setLayout(new BorderLayout(10, 10));
 
-        JPanel panelForm = new JPanel();
-        txtId = new JTextField(5);
-        txtNombre = new JTextField(20);
-        txtCuenta = new JTextField(20);
-        txtPrecio = new JTextField(10);
+        // --- FORM ---
+        JPanel form = new JPanel(new GridLayout(7, 1, 8, 8));
+        form.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        form.setBackground(Color.WHITE);
 
-        JButton btnAgregar = new JButton("Agregar");
-        JButton btnPrecios = new JButton("Gestor de precios");
+        form.add(label("ID"));
+        form.add(estiloCampo(txtId));
 
-        panelForm.add(new JLabel("ID"));
-        panelForm.add(txtId);
+        form.add(label("Nombre"));
+        form.add(estiloCampo(txtNombre));
 
-        panelForm.add(new JLabel("Nombre"));
-        panelForm.add(txtNombre);
+        form.add(label("Precio"));
+        form.add(estiloCampo(txtPrecio));
 
-        panelForm.add(new JLabel("Cuenta"));
-        panelForm.add(txtCuenta);
+        estiloBoton(btnGuardar, VERDE);
+        form.add(btnGuardar);
 
-        panelForm.add(new JLabel("Precio"));
-        panelForm.add(txtPrecio);
+        add(form, BorderLayout.WEST);
 
-        panelForm.add(btnAgregar);
-        panelForm.add(btnPrecios);
-
-        panelForm.setPreferredSize(new Dimension(600,80));
-        String[] columnas = {"Id", "Nombre","Cuenta","Precio"};
-        modelo = new DefaultTableModel(columnas,0);
-        tabla = new JTable(modelo);
-
-        add(panelForm, BorderLayout.NORTH);
-        add(new JScrollPane(tabla),BorderLayout.CENTER);
-        
-        if (HotelController.listRoomModels().isEmpty()) {
-            cargarDatosIniciales();
-        }else{
-            System.out.println("La lista no esta vacia, entonces no necesito cargar datos iniciales para los huspedes");
-        }
-        actualizarTabla();
-
-        btnAgregar.addActionListener(e -> {
-            int id = Integer.parseInt(txtId.getText());
-            String nombre = txtNombre.getText();
-            HotelController.createRoom(id, nombre);
-            actualizarTabla();
-            limpiar();
-        });
-
-        
-        btnPrecios.addActionListener(e -> {
-            PrecioView precioView = new PrecioView();
-            precioView.setVisible(true);
-        });
-
-        tabla.getSelectionModel().addListSelectionListener(
-            e -> {
-                int fila = tabla.getSelectedRow();
-            if(fila>= 0){
-                txtId.setText(modelo.getValueAt(fila, 0).toString());
-                txtNombre.setText(modelo.getValueAt(fila, 1).toString());
-            }}
-        );
-
-    }
-
-        private void actualizarTabla(){
-            modelo.setRowCount(0);
-            for(RoomModel e : HotelController.listRoomModels()) {
-                modelo.addRow(new Object[]{e.getId(),e.getNombreHuesped()
-                });
+        // --- TABLA ---
+        modelo = new DefaultTableModel(
+                new String[]{"ID", "Nombre", "Precio", "", ""}, 0
+        ) {
+            public boolean isCellEditable(int r, int c) {
+                return c >= 3;
             }
+        };
+
+        tabla = new JTable(modelo);
+        tabla.setRowHeight(28);
+        tabla.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        tabla.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        tabla.setSelectionBackground(new Color(220, 235, 250));
+
+        // Botones
+        tabla.getColumnModel().getColumn(3)
+                .setCellRenderer(new ButtonRenderer("Editar", AZUL));
+        tabla.getColumnModel().getColumn(3)
+                .setCellEditor(new ButtonEditor("Editar", AZUL));
+
+        tabla.getColumnModel().getColumn(4)
+                .setCellRenderer(new ButtonRenderer("X", ROJO));
+        tabla.getColumnModel().getColumn(4)
+                .setCellEditor(new ButtonEditor("Eliminar", ROJO));
+
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        add(scroll, BorderLayout.CENTER);
+    }
+
+    // 🎨 Label bonito
+    private JLabel label(String text) {
+        JLabel l = new JLabel(text);
+        l.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        return l;
+    }
+
+    // 🎨 Campo bonito
+    private JTextField estiloCampo(JTextField txt) {
+        txt.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        return txt;
+    }
+
+    // 🎨 Botón bonito
+    private void estiloBoton(JButton btn, Color color) {
+        btn.setBackground(color);
+        btn.setForeground(Color.WHITE);
+        btn.setFocusPainted(false);
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btn.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+    }
+
+    // --- RENDER ---
+    class ButtonRenderer extends JButton implements javax.swing.table.TableCellRenderer {
+        public ButtonRenderer(String text, Color color) {
+            setText(text);
+            setBackground(color);
+            setForeground(Color.WHITE);
+            setFocusPainted(false);
         }
-        private void limpiar(){
-            txtId.setText("");
-            txtNombre.setText("");
-        }
-        private void cargarDatosIniciales(){
-            HotelController.createRoom(1, "Andres");
-            HotelController.createRoom(2, "Roberto");
-            actualizarTabla();
+
+        public Component getTableCellRendererComponent(JTable t, Object v,
+                boolean s, boolean f, int r, int c) {
+            return this;
         }
     }
+
+    // --- EDITOR ---
+    class ButtonEditor extends DefaultCellEditor {
+        JButton btn = new JButton();
+        String accion;
+
+        public ButtonEditor(String accion, Color color) {
+            super(new JCheckBox());
+            this.accion = accion;
+
+            btn.setBackground(color);
+            btn.setForeground(Color.WHITE);
+            btn.setFocusPainted(false);
+
+            btn.addActionListener(e -> fireEditingStopped());
+        }
+
+        public Component getTableCellEditorComponent(JTable t, Object v,
+                boolean s, int r, int c) {
+            btn.setText(accion);
+            return btn;
+        }
+
+        public Object getCellEditorValue() {
+            return accion;
+        }
+    }
+}

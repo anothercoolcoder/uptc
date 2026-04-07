@@ -1,20 +1,17 @@
 package config;
-import java.io.FileInputStream;
-import java.util.Properties;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public class ConnectionRedis {
+    private static JedisPool pool;
 
-    public static Properties cargar() {
-
-        Properties props = new Properties();
-
-        try {
-            FileInputStream fis = new FileInputStream("Archivos/redis.properties");
-            props.load(fis);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static Jedis getConnection() {
+        if (pool == null) {
+            // Aquí puedes leer el archivo redis.properties, por ahora lo haremos directo:
+            pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379);
         }
-
-        return props;
+        return pool.getResource();
     }
 }

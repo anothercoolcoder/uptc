@@ -1,0 +1,42 @@
+[
+  {
+    "id": "12345",
+    "nombre": "q",
+    "precioHabitacion": 1.0
+  },
+  {
+    "id": "1235",
+    "nombre": "andres",
+    "precioHabitacion": 15.0
+  },
+  {
+    "id": "14",
+    "nombre": "roberto",
+    "precioHabitacion": 14.0
+  },
+  {
+    "id": "15",
+    "nombre": "roberto",
+    "precioHabitacion": 14.0
+  },
+  {
+    "id": "156",
+    "nombre": "roberto",
+    "precioHabitacion": 14.0
+  },
+  {
+    "id": "19",
+    "nombre": "andres",
+    "precioHabitacion": 1444.0
+  },
+  {
+    "id": "21",
+    "nombre": "isab",
+    "precioHabitacion": 123.0
+  },
+  {
+    "id": "25",
+    "nombre": "juan",
+    "precioHabitacion": 12.0
+  }
+]
