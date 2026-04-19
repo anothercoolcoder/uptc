@@ -54,20 +54,23 @@ public class ClienteDao {
 
         ps.setString(1, cliente.getNombre());
         ps.setDouble(2, cliente.getPrecioHabitacion());
-        ps.setString(3, cliente.getId());
+        ps.setString(3, cliente.getId().trim()); // 🔥 TRIM
 
         int filas = ps.executeUpdate();
 
-        if (filas > 0) {
-            sincronizarJson(); // 🔥 importante
-            return true;
-        }
+        System.out.println("FILAS ACTUALIZADAS: " + filas);
+
+        // 🔥 sincroniza SIEMPRE para debug
+        sincronizarJson();
+
+        return filas > 0;
 
     } catch (SQLException e) {
         System.err.println("Error al actualizar: " + e.getMessage());
     }
     return false;
 }
+
 
     // MÉTODO: Crear con Sincronización
     public boolean registrarCliente(ClienteModel cliente) {

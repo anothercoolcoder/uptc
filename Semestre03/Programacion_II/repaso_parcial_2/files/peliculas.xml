@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cartelera>
+    <pelicula>
+        <id>1</id>
+        <titulo>Dune: Part Two</titulo>
+        <director>Denis Villeneuve</director>
+        <year>2024</year>
+    </pelicula>
+
+    <pelicula>
+        <id>2</id>
+        <titulo>Inception</titulo>
+        <director>Christopher Nolan</director>
+        <year>2010</year>
+    </pelicula>
+
+    <pelicula>
+        <id>3</id>
+        <titulo>Oppenheimer</titulo>
+        <director>Christopher Nolan</director>
+        <year>2023</year>
+    </pelicula>
+
+    <pelicula>
+        <id>4</id>
+        <titulo>Parasite</titulo>
+        <director>Bong Joon-ho</director>
+        <year>2019</year>
+    </pelicula>
+
+    <pelicula>
+        <id>5</id>
+        <titulo>Spider-Man: Across the Spider-Verse</titulo>
+        <director>Joaquim Dos Santos</director>
+        <year>2023</year>
+    </pelicula>
+</cartelera>

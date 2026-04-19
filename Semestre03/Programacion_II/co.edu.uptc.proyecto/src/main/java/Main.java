@@ -10,29 +10,36 @@ import config.DbConfig;
 public class Main {
 
     public static void main(String[] args) {
+    // 1. Mostrar el Splash inmediatamente
+    SplashView splash = new SplashView();
+    splash.setVisible(true);
 
-        // Ejecutar Swing en el hilo correcto
-        SwingUtilities.invokeLater(() -> {
-
-            // 1. Splash
-            SplashView splash = new SplashView();
-            splash.setVisible(true);
-
-            try {
-                Thread.sleep(2000); // Simulación de carga (2 segundos)
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    // 2. Crear un hilo de fondo para que no se congele la pantalla
+    Thread hiloCarga = new Thread(() -> {
+        try {
+            // Simulamos la carga de la DB o archivos
+            for (int i = 0; i <= 100; i += 20) {
+                Thread.sleep(500); // 0.5 segundos por paso
+                // Actualizamos la barra de progreso si tu SplashView tiene el método
+                // SwingUtilities.invokeLater(() -> splash.setProgreso(i)); 
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        // 3. Cuando termine la carga, cerramos Splash y abrimos Login en el hilo de Swing
+        SwingUtilities.invokeLater(() -> {
             splash.dispose();
-
-            // 2. Login
+            
             LoginView login = new LoginView();
             login.setVisible(true);
-
+            
             login.btnIngresar.addActionListener(e -> autenticar(login));
         });
-    }
+    });
+
+    hiloCarga.start(); // ¡Arrancamos el hilo!
+}
 
     private static void autenticar(LoginView login) {
         String user = login.txtUsuario.getText();
