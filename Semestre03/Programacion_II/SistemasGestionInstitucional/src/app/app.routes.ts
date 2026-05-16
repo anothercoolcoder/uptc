@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ListarEstudiante } from './gestion-estudiantes/listar-estudiante/listar-estudiante';
-import { ListarEstudiantesComponent } from './gestion-estudiantes/listar-estudiante/listar-estudiante.component';
-
+import { ListarEstudiantes } from './gestion-estudiantes/listar-estudiante/listar-estudiante';
+import { CrearEstudiantes } from './gestion-estudiantes/crear-estudiantes/crear-estudiantes';
 export const routes: Routes = [
-  {path:'listar',component: ListarEstudiantesComponent}
+  {path:'listar',component: ListarEstudiantes},
+  {path: 'crear',component: CrearEstudiantes}
 ];

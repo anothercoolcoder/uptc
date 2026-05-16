@@ -1,1 +1,25 @@
-<p>listar-estudiante works!</p>
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Género</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudiante of estudiantes">
+      <td>{{ estudiante.nombre }}</td>
+      <td>{{ estudiante.edad }}</td>
+      <td>{{ estudiante.genero }}</td>
+      <td>
+        <button (click)="editar(estudiante)" style="color: blue; margin-right: 10px;">
+          Editar
+        </button>
+        <button (click)="eliminar(estudiante.id)" style="color: red;">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

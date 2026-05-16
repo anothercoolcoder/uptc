@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/Management/EstudianteManagement.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/Management/EstudianteManagement.java" />
+              <option name="originalContent" value="package com.uptc.programacion2.Management;&#10;&#10;&#10;@Repository(&quot;CrudEstudiantes&quot;)&#10;public interface EstudianteManagement extends CrudRepository&lt;estudianteEntity, Integer&gt; {&#10;&#10;}" />
+              <option name="updatedContent" value="package com.uptc.programacion2.Management;&#10;&#10;import org.springframework.data.repository.CrudRepository;&#10;import org.springframework.stereotype.Repository;&#10;&#10;import com.uptc.programacion2.entities.estudianteEntity;&#10;&#10;@Repository(&quot;CrudEstudiantes&quot;)&#10;public interface EstudianteManagement extends CrudRepository&lt;estudianteEntity, Long&gt; {&#10;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/Services/EstudianteServices.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/Services/EstudianteServices.java" />
+              <option name="originalContent" value="package com.uptc.programacion2.Services;&#10;&#10;&#10;public interface EstudianteServices {&#10;&#10;    public abstract List&lt;estudianteEntity&gt; listarEstudiantes();&#10;&#10;    public abstract estudianteEntity guardarEstudiante(estudianteEntity est);&#10;}" />
+              <option name="updatedContent" value="package com.uptc.programacion2.Services;&#10;&#10;import java.util.List;&#10;&#10;import com.uptc.programacion2.entities.estudianteEntity;&#10;&#10;public interface EstudianteServices {&#10;&#10;    public abstract List&lt;estudianteEntity&gt; listarEstudiantes();&#10;&#10;    public abstract estudianteEntity guardarEstudiante(estudianteEntity est);&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/entities/estudianteEntity.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/demo/src/main/java/com/uptc/programacion2/entities/estudianteEntity.java" />
+              <option name="originalContent" value="package com.uptc.programacion2.entities;&#10;&#10;import javax.persistence.Entity;&#10;import javax.persistence.Id;&#10;import javax.persistence.Table;&#10;&#10;@Entity&#10;@Table(name=&quot;estudiante&quot;)&#10;public class estudianteEntity {&#10;&#10;    @Id&#10;    private Long id;&#10;    private String nombre;&#10;    private int edad;&#10;    private String genero;&#10;&#10;    public estudianteEntity() {&#10;    }&#10;&#10;    public estudianteEntity(Long id, String nombre, int edad, String genero) {&#10;        this.id = id;&#10;        this.nombre = nombre;&#10;        this.edad = edad;&#10;        this.genero = genero;&#10;    }&#10;&#10;    public Long getId() {&#10;        return id;&#10;    }&#10;&#10;    public void setId(Long id) {&#10;        this.id = id;&#10;    }&#10;&#10;    public String getNombre() {&#10;        return nombre;&#10;    }&#10;&#10;    public void setNombre(String nombre) {&#10;        this.nombre = nombre;&#10;    }&#10;&#10;    public int getEdad() {&#10;        return edad;&#10;    }&#10;&#10;    public void setEdad(int edad) {&#10;        this.edad = edad;&#10;    }&#10;&#10;    public String getGenero() {&#10;        return genero;&#10;    }&#10;&#10;    public void setGenero(String genero) {&#10;        this.genero = genero;&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="package com.uptc.programacion2.entities;&#10;&#10;import jakarta.persistence.Entity;&#10;import jakarta.persistence.Id;&#10;import jakarta.persistence.Table;&#10;&#10;@Entity&#10;@Table(name=&quot;estudiante&quot;)&#10;public class estudianteEntity {&#10;&#10;    @Id&#10;    private Long id;&#10;    private String nombre;&#10;    private int edad;&#10;    private String genero;&#10;&#10;    public estudianteEntity() {&#10;    }&#10;&#10;    public estudianteEntity(Long id, String nombre, int edad, String genero) {&#10;        this.id = id;&#10;        this.nombre = nombre;&#10;        this.edad = edad;&#10;        this.genero = genero;&#10;    }&#10;&#10;    public Long getId() {&#10;        return id;&#10;    }&#10;&#10;    public void setId(Long id) {&#10;        this.id = id;&#10;    }&#10;&#10;    public String getNombre() {&#10;        return nombre;&#10;    }&#10;&#10;    public void setNombre(String nombre) {&#10;        this.nombre = nombre;&#10;    }&#10;&#10;    public int getEdad() {&#10;        return edad;&#10;    }&#10;&#10;    public void setEdad(int edad) {&#10;        this.edad = edad;&#10;    }&#10;&#10;    public String getGenero() {&#10;        return genero;&#10;    }&#10;&#10;    public void setGenero(String genero) {&#10;        this.genero = genero;&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,5 +1,6 @@
 export interface Estudiante {
-    nombre: string;
-    edad: number;
-    genero: string;
-  }
+  id: number;
+  nombre: string;
+  edad: number;
+  genero: string;
+}
