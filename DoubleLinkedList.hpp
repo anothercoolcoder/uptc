@@ -1,6 +1,3 @@
-#ifndef DOUBLELINKEDLIST_HPP
-#define DOUBLELINKEDLIST_HPP
-
 #include "Node.hpp"
 #include <vector>
 
@@ -27,5 +24,3 @@ private:
     Node<T>* tail;
     Node<T>* actual;
 };
-
-#endif

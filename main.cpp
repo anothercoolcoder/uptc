@@ -7,11 +7,11 @@ using namespace std;
 int main() {
     DoubleLinkedList<string>* historial = new DoubleLinkedList<string>();
 
-    historial->addEnd("https://google.com");
-    historial->addEnd("https://youtube.com");
-    historial->addEnd("https://github.com");
+    // historial->addEnd("https://google.com");
+    // historial->addEnd("https://youtube.com");
+    // historial->addEnd("https://github.com");
 
-    int opcion = 0;
+    char opcion;
     string url;
 
     do {
@@ -28,32 +28,32 @@ int main() {
         cin >> opcion;
 
         switch (opcion) {
-            case 1:
+            case '1':
                 cout << "Ingrese la URL: ";
                 cin >> url;
                 historial->addEnd(url);
                 break;
-            case 2:
+            case '2':
                 if (historial->canGoBack()) {
                     historial->goBack();
                 } else {
                     cout << "\n[!] No hay páginas anteriores." << endl;
                 }
                 break;
-            case 3:
+            case '3':
                 if (historial->canGoForward()) {
                     historial->goForward();
                 } else {
                     cout << "\n[!] No hay páginas posteriores." << endl;
                 }
                 break;
-            case 4:
+            case '4':
                 historial->printHistoryForward();
                 break;
-            case 5:
+            case '5':
                 historial->printHistoryBackward();
                 break;
-            case 6:
+            case '6':
                 cout << "\nSaliendo..." << endl;
                 break;
             default:

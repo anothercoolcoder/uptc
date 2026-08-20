@@ -1,6 +1,3 @@
-#ifndef NODE_HPP
-#define NODE_HPP
-
 template <class T> class DoubleLinkedList;
 
 template <class T>
@@ -40,5 +37,3 @@ private:
     Node<T>* next;
     Node<T>* prev;
 };
-
-#endif

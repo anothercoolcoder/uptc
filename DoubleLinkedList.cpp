@@ -4,6 +4,7 @@
 using namespace std;
 
 template <class T>
+// constructor
 DoubleLinkedList<T>::DoubleLinkedList() {
     head = nullptr;
     tail = nullptr;
@@ -11,23 +12,24 @@ DoubleLinkedList<T>::DoubleLinkedList() {
 }
 
 template <class T>
+// definir si esta vacio
 bool DoubleLinkedList<T>::isEmpty() {
     return head == nullptr;
 }
 
 template <class T>
+
 void DoubleLinkedList<T>::addEnd(T value) {
     Node<T>* nuevo = new Node<T>(value);
-
+    // ta vacia
     if (isEmpty()) {
         head = nuevo;
         tail = nuevo;
         actual = nuevo;
         return;
     }
-
-    // Si navegamos hacia atrás y luego visitamos una nueva URL, borramos el "futuro"
-    if (actual->getNext() != nullptr) {
+    // definimos el actual y en base a el tomamos la ruta
+    if (actual->getNext() != nullptr) { // verifica que no sea cola
         Node<T>* aux = actual->getNext();
         while (aux != nullptr) {
             Node<T>* borrar = aux;
@@ -104,17 +106,7 @@ void DoubleLinkedList<T>::printHistoryBackward() {
     }
 }
 
-template <class T>
-vector<T> DoubleLinkedList<T>::getElements() {
-    vector<T> elements;
-    Node<T>* aux = head;
-    while (aux != nullptr) {
-        elements.push_back(aux->getValue());
-        aux = aux->getNext();
-    }
-    return elements;
-}
-
+// borrar
 template <class T>
 DoubleLinkedList<T>::~DoubleLinkedList() {
     Node<T>* aux = head;
