@@ -1,3 +1,4 @@
+// Node.java
 package graficas.model;
 
 public class Node {

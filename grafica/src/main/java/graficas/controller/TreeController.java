@@ -10,35 +10,67 @@ public class TreeController {
         this.tree = tree;
     }
 
-    public BinaryTree getTree() {
-        return tree;
-    }
-
     public void insert(int value) {
-        tree.setRoot(insertRecursive(tree.getRoot(), value));
+        Node updatedRoot = tree.insert(tree.getRoot(), value);
+        tree.setRoot(updatedRoot);
     }
 
-    private Node insertRecursive(Node current, int value) {
-        if (current == null) {
-            return new Node(value, null, null);
+    public void delete(int value) {
+        Node updatedRoot = tree.delete(tree.getRoot(), value);
+        tree.setRoot(updatedRoot);
+    }
+
+    public void printTraversals() {
+        System.out.print("PreOrder: ");
+        tree.preOrder(tree.getRoot());
+        System.out.println();
+        System.out.print("InOrder: ");
+        tree.inOrder(tree.getRoot());
+        System.out.println();
+        System.out.print("PostOrder: ");
+        tree.postOrder(tree.getRoot());
+        System.out.println();
+    }
+
+    public String getPreOrderText() {
+        StringBuilder sb = new StringBuilder();
+        buildPreOrder(tree.getRoot(), sb);
+        return sb.toString().trim();
+    }
+
+    private void buildPreOrder(Node node, StringBuilder sb) {
+        if (node != null) {
+            sb.append(node.getValue()).append(" ");
+            buildPreOrder(node.getLeft(), sb);
+            buildPreOrder(node.getRight(), sb);
         }
-        if (value < current.getValue()) {
-            current.setLeft(insertRecursive(current.getLeft(), value));
-        } else if (value > current.getValue()) {
-            current.setRight(insertRecursive(current.getRight(), value));
+    }
+
+    public String getInOrderText() {
+        StringBuilder sb = new StringBuilder();
+        buildInOrder(tree.getRoot(), sb);
+        return sb.toString().trim();
+    }
+
+    private void buildInOrder(Node node, StringBuilder sb) {
+        if (node != null) {
+            buildInOrder(node.getLeft(), sb);
+            sb.append(node.getValue()).append(" ");
+            buildInOrder(node.getRight(), sb);
         }
-        return current;
     }
 
-    public boolean search(int value) {
-        return searchRecursive(tree.getRoot(), value);
+    public String getPostOrderText() {
+        StringBuilder sb = new StringBuilder();
+        buildPostOrder(tree.getRoot(), sb);
+        return sb.toString().trim();
     }
 
-    private boolean searchRecursive(Node current, int value) {
-        if (current == null) return false;
-        if (value == current.getValue()) return true;
-        return value < current.getValue()
-                ? searchRecursive(current.getLeft(), value)
-                : searchRecursive(current.getRight(), value);
+    private void buildPostOrder(Node node, StringBuilder sb) {
+        if (node != null) {
+            buildPostOrder(node.getLeft(), sb);
+            buildPostOrder(node.getRight(), sb);
+            sb.append(node.getValue()).append(" ");
+        }
     }
 }

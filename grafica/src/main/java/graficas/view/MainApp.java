@@ -2,6 +2,7 @@ package graficas.view;
 
 import graficas.controller.TreeController;
 import graficas.model.BinaryTree;
+import graficas.model.Node;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,11 +16,10 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        BinaryTree tree = new BinaryTree();
+        Node initialRoot = new Node(10, null, null);
+        BinaryTree tree = new BinaryTree(initialRoot);
         TreeController controller = new TreeController(tree);
 
-        // Valores iniciales
-        controller.insert(10);
         controller.insert(5);
         controller.insert(15);
         controller.insert(2);
@@ -28,8 +28,11 @@ public class MainApp extends Application {
         TreeViewPane treePane = new TreeViewPane(tree);
 
         TextField inputField = new TextField();
-        inputField.setPromptText("Ingrese valor");
+        inputField.setPromptText("Valor int");
+        
         Button insertBtn = new Button("Insertar");
+        Button deleteBtn = new Button("Eliminar");
+        Button traversalsBtn = new Button("Ver Recorridos"); 
 
         insertBtn.setOnAction(e -> {
             if (!inputField.getText().trim().isEmpty()) {
@@ -39,12 +42,33 @@ public class MainApp extends Application {
                     treePane.render();
                     inputField.clear();
                 } catch (NumberFormatException ex) {
-                    System.out.println("Ingrese un número válido");
+                    System.out.println("Formato numérico no válido");
                 }
             }
         });
 
-        HBox controls = new HBox(10, inputField, insertBtn);
+        deleteBtn.setOnAction(e -> {
+            if (!inputField.getText().trim().isEmpty()) {
+                try {
+                    int val = Integer.parseInt(inputField.getText().trim());
+                    controller.delete(val);
+                    treePane.render();
+                    inputField.clear();
+                } catch (NumberFormatException ex) {
+                    System.out.println("Formato numérico no válido");
+                }
+            }
+        });
+
+        traversalsBtn.setOnAction(e -> {
+            TraversalsWindow.display(
+                controller.getPreOrderText(),
+                controller.getInOrderText(),
+                controller.getPostOrderText()
+            );
+        });
+
+        HBox controls = new HBox(10, inputField, insertBtn, deleteBtn, traversalsBtn);
         controls.setAlignment(Pos.CENTER);
         controls.setStyle("-fx-padding: 10px;");
 
@@ -52,9 +76,9 @@ public class MainApp extends Application {
         mainLayout.setCenter(treePane);
         mainLayout.setBottom(controls);
 
-        Scene scene = new Scene(mainLayout, 700, 500);
+        Scene scene = new Scene(mainLayout, 800, 600);
 
-        primaryStage.setTitle("Árbol Binario - MVC");
+        primaryStage.setTitle("Visualizador Árbol Binario");
         primaryStage.setScene(scene);
         primaryStage.show();
 
